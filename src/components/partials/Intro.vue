@@ -61,13 +61,26 @@ const bg_images = [Banner1, Banner2, Banner3];
 }
 .intro .swiper-pagination .swiper-pagination-bullet {
   background-color: #fff;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   opacity: 1;
-  margin-right: 6px;
+  margin-right: 10px;
 }
 .intro .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #701bf8;
   position: relative;
+}
+.intro .swiper-pagination .swiper-pagination-bullet-active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -0.05px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 0.5px solid #701bf8;
+  border-radius: 50%;
+  transform: scale(2);
+  transform-origin: center;
 }
 </style>

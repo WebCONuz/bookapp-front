@@ -9,13 +9,13 @@ const props = defineProps({
     class="absolute top-[42px] right-0 bg-white border border-gray-300 w-[250px] rounded-md duration-200 shadow-lg"
   >
     <li
-      class="sub-menu-item px-3 text-sm relative hover:bg-gray-100 duration-150"
+      class="sub-menu-item px-3 text-sm relative hover:bg-gray-100 hover:text-[#701BF8] duration-150"
       v-for="(item, index) in props.data"
       :key="index + '-sub-menu-item'"
     >
       <!-- sub menu content -->
       <div
-        class="py-3 px-3 w-full flex items-center justify-between"
+        class="p-3 w-full flex items-center justify-between"
         :class="
           index + 1 === props.data?.length ? '' : 'border-b border-gray-200'
         "
@@ -34,9 +34,18 @@ const props = defineProps({
         <li
           v-for="(sub, i) in item?.subCategories"
           :key="i + '-sub-child-item'"
-          class="py-3 px-4 hover:bg-gray-100 duration-150"
+          class="px-3 text-black hover:bg-gray-100 hover:text-[#701BF8] duration-150"
         >
-          {{ sub }}
+          <div
+            class="p-3"
+            :class="
+              i + 1 === item?.subCategories?.length
+                ? ''
+                : 'border-b border-gray-200'
+            "
+          >
+            {{ sub }}
+          </div>
         </li>
       </ul>
     </li>

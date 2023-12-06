@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import SubMenu from "../ui/SubMenu.vue";
 
 const isLogin = ref(false);
@@ -47,10 +47,28 @@ const categories = [
     title: "Algorithms & IT",
   },
 ];
+
+const scrolling = ref(false);
+function scrollHeader() {
+  if (window.scrollY === 0) {
+    scrolling.value = false;
+  } else {
+    scrolling.value = true;
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", () => {
+    scrollHeader();
+  });
+});
 </script>
 
 <template>
-  <header class="header bg-white sticky top-0 left-0 z-30 w-full">
+  <header
+    class="header bg-white sticky top-0 left-0 z-30 w-full duration-200"
+    :class="scrolling ? 'shadow-xl' : ''"
+  >
     <div class="container py-4">
       <div class="header__top flex items-center justify-between px-2">
         <!-- logo -->
@@ -62,12 +80,22 @@ const categories = [
         <!-- menu -->
         <ul class="flex items-center">
           <li
-            class="category mr-6 relative flex px-4 items-center border border-gray-300 rounded cursor-pointer"
+            class="category mr-2 relative flex px-4 items-center border border-gray-300 rounded cursor-pointer"
           >
             <i class="bx bx-menu text-lg"></i>
             <span class="py-2 ml-2 mr-1">Kategoriyalar</span>
             <i class="bx bx-chevron-down text-lg"></i>
             <SubMenu :data="categories" class="open-sub-menu" />
+          </li>
+          <li class="relative mr-6">
+            <input
+              type="text"
+              placeholder="search"
+              class="py-2 pl-4 pr-9 rounded outline-none border border-gray-300 w-[350px]"
+            />
+            <i
+              class="bx bx-search text-2xl text-gray-400 absolute right-2 top-1/2 -translate-y-1/2"
+            ></i>
           </li>
           <li class="mr-6">
             <router-link
@@ -91,13 +119,10 @@ const categories = [
               Eng ko'p o'qilgan
             </router-link>
           </li>
-          <li class="cursor-pointer hover:text-[#701BF8] duration-200">
-            <i class="bx bx-search text-lg"></i>
-          </li>
         </ul>
 
         <!-- avatar -->
-        <ul>
+        <!-- <ul>
           <li v-if="isLogin" class="flex items-center">
             <img
               src="../../assets/images/ui/profile.png"
@@ -115,9 +140,9 @@ const categories = [
               <span>AUTH</span>
             </router-link>
           </li>
-        </ul>
+        </ul> -->
       </div>
-      <div class="header__bottom"></div>
+      <!-- <div class="header__bottom"></div> -->
     </div>
   </header>
 </template>

@@ -23,48 +23,55 @@ const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
 
 <template>
   <section class="book_slider overflow-x-hidden w-full pb-20">
-    <div class="container"><Title :text="props.title" /></div>
-    <div class="w-[120%]">
-      <swiper
-        :slidesPerView="8"
-        :spaceBetween="16"
-        :pagination="{
-          clickable: true,
-        }"
-        :loop="true"
-        :centeredSlides="true"
-        :modules="modules"
-        class="mySwiper"
-      >
-        <swiper-slide
-          v-for="(item, index) in books"
-          :key="index + '-caroucel-book-item'"
+    <div class="container">
+      <Title :text="props.title" />
+      <div class="px-2">
+        <swiper
+          :slidesPerView="6"
+          :spaceBetween="16"
+          :navigation="true"
+          :loop="true"
+          :modules="modules"
+          class="mySwiper"
         >
-          <BookCard :img="item" />
-        </swiper-slide>
-      </swiper>
+          <swiper-slide
+            v-for="(item, index) in books"
+            :key="index + '-caroucel-book-item'"
+          >
+            <BookCard :img="item" />
+          </swiper-slide>
+        </swiper>
+      </div>
     </div>
   </section>
 </template>
 
 <style>
-.book_slider .swiper-pagination {
-  width: auto;
-  bottom: 15px;
-  top: auto;
-  display: flex;
-  align-items: center;
-}
-.book_slider .swiper-pagination .swiper-pagination-bullet {
+.book_slider .swiper-button-prev,
+.book_slider .swiper-button-next {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
   background-color: #fff;
-  width: 12px;
-  height: 12px;
-  opacity: 1;
-  margin-right: 16px;
+  opacity: 0;
+  transition: 0.2s;
 }
-.book_slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #95bef3;
-  width: 20px;
-  height: 20px;
+.mySwiper:hover .swiper-button-prev,
+.mySwiper:hover .swiper-button-next {
+  opacity: 1;
+}
+.book_slider .swiper-button-prev::after,
+.book_slider .swiper-button-next::after {
+  font-size: 14px;
+  color: #00000095;
+  font-weight: bold;
+}
+.book_slider .swiper-button-prev {
+  left: 1.5rem;
+  right: auto;
+}
+.book_slider .swiper-button-next {
+  left: auto;
+  right: 1.5rem;
 }
 </style>

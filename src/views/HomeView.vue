@@ -16,7 +16,7 @@ import Footer from "../components/partials/Footer.vue";
     <CategoryGrid />
     <BookSlider title="Saralangan adabiyotlar" />
     <BookSlider title="Eng ko'p o'qilgan adabiyotlar" />
-    <Testimotional title="Foydalanuvchilar fikri" />
+    <!-- <Testimotional title="Foydalanuvchilar fikri" /> -->
     <Footer />
   </div>
 </template>

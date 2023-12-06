@@ -37,6 +37,13 @@ const books = [
           <BookCard :img="item" />
         </div>
       </div>
+      <div class="text-center mt-3">
+        <button
+          class="rounded-md py-2 px-5 border border-[#701BF8] text-[#701BF8] outline-none hover:text-white hover:bg-[#701BF8] duration-200"
+        >
+          See more
+        </button>
+      </div>
     </div>
   </div>
 </template>

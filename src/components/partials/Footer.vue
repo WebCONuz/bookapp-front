@@ -68,7 +68,7 @@
     </div>
     <div class="bg-[#383a3c]">
       <div
-        class="container flex flex-col md:flex-wrap items-center md:justify-between py-4"
+        class="container flex flex-col md:flex-row items-center md:justify-between py-4"
       >
         <p class="text-white text-sm sm:text-base">
           &copy; {{ new Date().getFullYear() }}. Barcha huquqlar himoyalangan.

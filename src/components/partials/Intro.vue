@@ -38,7 +38,7 @@ const bg_images = [Banner1, Banner2, Banner3];
             <img
               :src="item"
               alt="banner"
-              class="w-full h-[350px] object-cover rounded-md"
+              class="w-full h-[200px] sm:h-[230px] md:h-[290px] lg:h-[350px] object-cover rounded-md"
             />
           </swiper-slide>
         </swiper>

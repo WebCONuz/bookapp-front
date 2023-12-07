@@ -25,7 +25,7 @@ const books = [
 </script>
 
 <template>
-  <div class="books-grid my-10">
+  <div class="books-grid my-5 md:my-10">
     <div class="container">
       <Title text="Kitoblar" />
       <div class="flex flex-wrap">
@@ -39,7 +39,7 @@ const books = [
       </div>
       <div class="text-center mt-3">
         <button
-          class="rounded-md py-2 px-5 border border-[#701BF8] text-[#701BF8] outline-none hover:text-white hover:bg-[#701BF8] duration-200"
+          class="rounded-md py-1 sm:py-2 px-3 sm:px-5 text-sm sm:text-base border border-[#701BF8] text-[#701BF8] outline-none hover:text-white hover:bg-[#701BF8] duration-200"
         >
           See more
         </button>
@@ -52,5 +52,27 @@ const books = [
 .item {
   width: calc(100% / 6 - 16px);
   margin: 0 8px 16px 8px;
+}
+@media screen and (max-width: 1280px) {
+  .item {
+    width: calc(100% / 5 - 12px);
+    margin: 0 6px 12px 6px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .item {
+    width: calc(100% / 4 - 10px);
+    margin: 0 5px 10px 5px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .item {
+    width: calc(100% / 3 - 10px);
+  }
+}
+@media screen and (max-width: 640px) {
+  .item {
+    width: calc(100% / 2 - 10px);
+  }
 }
 </style>

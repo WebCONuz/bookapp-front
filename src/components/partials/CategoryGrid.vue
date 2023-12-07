@@ -35,4 +35,20 @@ const categories = [
   width: calc(100% / 4 - 16px);
   margin: 0 8px 16px 8px;
 }
+@media screen and (max-width: 1280px) {
+  .item {
+    margin: 0 6px 12px 6px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .item {
+    width: calc(100% / 3 - 10px);
+    margin: 0 5px 10px 5px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .item {
+    width: calc(100% / 2 - 10px);
+  }
+}
 </style>

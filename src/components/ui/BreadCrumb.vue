@@ -5,9 +5,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex mb-8 px-[10px]">
+  <div class="flex mb-5 sm:mb-8 px-[10px]">
     <span
-      class="flex items-center mr-2 text-lg"
+      class="flex items-center mr-2 text-sm sm:text-base lg:text-lg"
       v-for="(item, index) in props.content"
       :key="index + '-breadcrumb'"
     >

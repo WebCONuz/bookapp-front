@@ -20,8 +20,29 @@ const tests = [1, 2, 3, 4, 5, 6];
       <Title :text="props.title" />
       <div class="px-[10px]">
         <swiper
-          :slidesPerView="3"
-          :spaceBetween="16"
+          :breakpoints="{
+            '0': {
+              slidesPerView: 2,
+              spaceBetween: 8,
+              centeredSlides: 'true',
+            },
+            '640': {
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            '768': {
+              slidesPerView: 3,
+              spaceBetween: 8,
+            },
+            '1024': {
+              slidesPerView: 3,
+              spaceBetween: 12,
+            },
+            '1280': {
+              slidesPerView: 3,
+              spaceBetween: 16,
+            },
+          }"
           :pagination="{
             clickable: true,
           }"

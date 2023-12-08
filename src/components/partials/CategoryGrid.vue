@@ -14,7 +14,7 @@ const categories = [
 </script>
 
 <template>
-  <div class="books-grid my-10">
+  <section class="books-grid my-10">
     <div class="container">
       <Title text="Kategoriyalar" />
       <div class="flex flex-wrap">
@@ -27,7 +27,7 @@ const categories = [
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>

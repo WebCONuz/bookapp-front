@@ -11,21 +11,19 @@ const datas = [
 </script>
 
 <template>
-  <main
-    class="single-book min-h-[70vh] bg-[#FAFAFA] pt-6 sm:pt-8 md:pt-10 lg:pt-12"
-  >
+  <div class="single-book pt-6 sm:pt-8 md:pt-10 lg:pt-12">
     <!-- breadcrumb -->
-    <div class="container">
+    <section class="container mb-5 sm:mb-8">
       <BreadCrumb :content="datas" />
-    </div>
+    </section>
     <!-- info book -->
-    <div class="container mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+    <section class="container mb-10 sm:mb-12 md:mb-16 lg:mb-20">
       <div
         class="flex flex-col sm:flex-row sm:items-center px-5px lg:px-[6px] xl:px-2"
       >
         <!-- 1 -->
         <img
-          src="@/assets/images/books/book6.jpg"
+          src="@/assets/images/books/book7.jpg"
           alt="wrapper-image"
           class="w-1/3 sm:hidden lg:block sm:w-1/2 xl:w-[45%] 2xl:w-[40%] rounded-md bg-gray-300 mb-6 sm:mb-0"
         />
@@ -144,10 +142,10 @@ const datas = [
           </button>
         </div>
       </div>
-    </div>
+    </section>
     <Testimotional title="Foydalanuvchilar fikri" />
     <BookSlider title="Sizga yoqishi mumkin" />
-  </main>
+  </div>
 </template>
 
 <style></style>

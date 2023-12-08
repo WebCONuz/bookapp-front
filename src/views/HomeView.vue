@@ -6,17 +6,13 @@ import CategoryGrid from "@/components/partials/CategoryGrid.vue";
 </script>
 
 <template>
-  <main class="home bg-[#FAFAFA]">
+  <div class="home">
     <Intro />
-    <BooksGrid />
+    <BooksGrid title="Kitoblar" />
     <CategoryGrid />
     <BookSlider title="Saralangan adabiyotlar" />
     <BookSlider title="Eng ko'p o'qilgan adabiyotlar" />
-  </main>
+  </div>
 </template>
 
-<style scoped>
-.home {
-  min-height: calc(100vh - 70px);
-}
-</style>
+<style scoped></style>

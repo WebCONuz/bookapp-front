@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex mb-5 sm:mb-8 px-5px lg:px-[6px] xl:px-2">
+  <div class="flex px-5px lg:px-[6px] xl:px-2">
     <span
       class="flex items-center mr-2 text-sm sm:text-base lg:text-lg"
       v-for="(item, index) in props.content"

@@ -2,7 +2,9 @@
 import { onMounted, ref } from "vue";
 import SubMenu from "../ui/SubMenu.vue";
 import Accordion from "../ui/Accordion.vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const openSubMenu = ref(false);
 const isSearchLength = ref(false);
 const searchWord = ref("");
@@ -78,7 +80,7 @@ onMounted(() => {
 
 <template>
   <header
-    class="header bg-white sticky top-0 left-0 z-30 w-full duration-200"
+    class="header bg-white sticky top-0 left-0 z-30 w-full duration-200 h-[61.6px] sm:h-[73.6px] flex items-center"
     :class="scrolling ? 'shadow-xl' : ''"
   >
     <div class="container py-4">
@@ -97,7 +99,7 @@ onMounted(() => {
 
         <!-- burger -->
         <div class="flex items-center lg:hidden">
-          <div class="relative mr-[6px] sm:mr-3">
+          <div class="relative mr-[6px] sm:mr-3" v-if="route.path !== '/books'">
             <input
               type="text"
               :placeholder="isSearchLength ? 'search' : ''"
@@ -127,14 +129,17 @@ onMounted(() => {
         <!-- menu -->
         <ul class="hidden lg:flex items-center">
           <li
-            class="category mr-[6px] xl:mr-2 relative flex px-4 items-center border border-gray-300 rounded cursor-pointer"
+            class="category relative flex px-4 items-center border border-gray-300 rounded cursor-pointer"
+            :class="
+              route.path !== '/books' ? 'mr-[6px] xl:mr-2' : 'mr-4 xl:mr-6'
+            "
           >
             <i class="bx bx-menu text-lg"></i>
             <span class="py-2 ml-2 mr-1">Kategoriyalar</span>
             <i class="bx bx-chevron-down text-lg"></i>
             <SubMenu :data="categories" class="open-sub-menu" />
           </li>
-          <li class="relative mr-4 xl:mr-6">
+          <li class="relative mr-4 xl:mr-6" v-if="route.path !== '/books'">
             <input
               type="text"
               placeholder="search"

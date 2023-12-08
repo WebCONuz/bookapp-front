@@ -1,7 +1,7 @@
 <script setup>
 import Intro from "@/components/partials/Intro.vue";
 import BooksGrid from "@/components/partials/BooksGrid.vue";
-import BookSlider from "@/components/partials/BookSlider.vue";
+import MainSlider from "@/components/partials/MainSlider.vue";
 import CategoryGrid from "@/components/partials/CategoryGrid.vue";
 </script>
 
@@ -10,8 +10,9 @@ import CategoryGrid from "@/components/partials/CategoryGrid.vue";
     <Intro />
     <BooksGrid title="Kitoblar" />
     <CategoryGrid />
-    <BookSlider title="Saralangan adabiyotlar" />
-    <BookSlider title="Eng ko'p o'qilgan adabiyotlar" />
+    <MainSlider title="Saralangan adabiyotlar" sliderType="book" />
+    <MainSlider title="Eng ko'p o'qilgan adabiyotlar" sliderType="book" />
+    <MainSlider title="Mualliflar" sliderType="author" />
   </div>
 </template>
 

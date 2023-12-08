@@ -1,6 +1,6 @@
 <script setup>
 import Testimotional from "@/components/partials/Testimotional.vue";
-import BookSlider from "@/components/partials/BookSlider.vue";
+import MainSlider from "@/components/partials/MainSlider.vue";
 import BreadCrumb from "@/components/ui/BreadCrumb.vue";
 
 const datas = [
@@ -144,7 +144,7 @@ const datas = [
       </div>
     </section>
     <Testimotional title="Foydalanuvchilar fikri" />
-    <BookSlider title="Sizga yoqishi mumkin" />
+    <MainSlider title="Sizga yoqishi mumkin" sliderType="book" />
   </div>
 </template>
 

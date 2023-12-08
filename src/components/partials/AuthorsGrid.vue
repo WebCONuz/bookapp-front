@@ -1,31 +1,32 @@
 <script setup>
-import BookCard from "../cards/BookCard.vue";
+import AuthorCard from "../cards/AuthorCard.vue";
 import Title from "../ui/Title.vue";
 
-import Book1 from "../../assets/images/books/book1.jpg";
-import Book2 from "../../assets/images/books/book2.jpg";
-import Book3 from "../../assets/images/books/book3.jpg";
-import Book4 from "../../assets/images/books/book4.jpg";
-import Book5 from "../../assets/images/books/book5.jpg";
-import Book6 from "../../assets/images/books/book6.jpg";
+import Author1 from "../../assets/images/authors/author1.jpg";
+import Author2 from "../../assets/images/authors/author2.jpg";
+import Author3 from "../../assets/images/authors/author3.jpg";
+import Author4 from "../../assets/images/authors/author4.jpg";
+import Author5 from "../../assets/images/authors/author5.jpg";
+import Author6 from "../../assets/images/authors/author6.jpg";
+import Author7 from "../../assets/images/authors/author7.jpg";
 
 const props = defineProps({
   title: String,
 });
 
-const books = [
-  Book1,
-  Book2,
-  Book3,
-  Book4,
-  Book5,
-  Book6,
-  Book1,
-  Book2,
-  Book3,
-  Book4,
-  Book5,
-  Book6,
+const authors = [
+  Author1,
+  Author2,
+  Author3,
+  Author4,
+  Author5,
+  Author6,
+  Author7,
+  Author1,
+  Author2,
+  Author3,
+  Author4,
+  Author5,
 ];
 </script>
 
@@ -36,10 +37,10 @@ const books = [
       <div class="flex flex-wrap">
         <div
           class="grid_item"
-          v-for="(item, index) in books"
-          :key="index + '-book-item'"
+          v-for="(item, index) in authors"
+          :key="index + '-author-item'"
         >
-          <BookCard :img="item" />
+          <AuthorCard :img="item" />
         </div>
       </div>
       <div class="text-center mt-3">

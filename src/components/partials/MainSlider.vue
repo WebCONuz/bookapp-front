@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import BookCard from "../cards/BookCard.vue";
+import AuthorCard from "../cards/AuthorCard.vue";
 import Title from "../ui/Title.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
@@ -14,11 +15,32 @@ import Book4 from "@/assets/images/books/book4.jpg";
 import Book5 from "@/assets/images/books/book5.jpg";
 import Book6 from "@/assets/images/books/book6.jpg";
 
+import Author1 from "@/assets/images/authors/author1.jpg";
+import Author2 from "@/assets/images/authors/author2.jpg";
+import Author3 from "@/assets/images/authors/author3.jpg";
+import Author4 from "@/assets/images/authors/author4.jpg";
+import Author5 from "@/assets/images/authors/author5.jpg";
+import Author6 from "@/assets/images/authors/author6.jpg";
+import Author7 from "@/assets/images/authors/author7.jpg";
+
 const props = defineProps({
   title: String,
+  sliderType: String,
 });
 const modules = ref([Navigation]);
 const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
+const authors = [
+  Author1,
+  Author2,
+  Author3,
+  Author4,
+  Author5,
+  Author6,
+  Author7,
+  Author3,
+  Author4,
+  Author5,
+];
 </script>
 
 <template>
@@ -58,10 +80,11 @@ const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
           class="mySwiper"
         >
           <swiper-slide
-            v-for="(item, index) in books"
+            v-for="(item, index) in sliderType === 'book' ? books : authors"
             :key="index + '-caroucel-book-item'"
           >
-            <BookCard :img="item" />
+            <BookCard v-if="sliderType === 'book'" :img="item" />
+            <AuthorCard v-else :img="item" />
           </swiper-slide>
         </swiper>
       </div>

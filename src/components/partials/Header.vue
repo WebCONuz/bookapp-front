@@ -231,7 +231,6 @@ onMounted(() => {
           </li>
         </ul> -->
       </div>
-      <!-- <div class="header__bottom"></div> -->
     </div>
   </header>
 </template>

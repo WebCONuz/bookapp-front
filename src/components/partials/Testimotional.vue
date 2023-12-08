@@ -18,23 +18,25 @@ const tests = [1, 2, 3, 4, 5, 6];
   <section class="test_slider overflow-x-hidden w-full pb-20">
     <div class="container">
       <Title :text="props.title" />
-      <swiper
-        :slidesPerView="3"
-        :spaceBetween="16"
-        :pagination="{
-          clickable: true,
-        }"
-        :loop="true"
-        :modules="modules"
-        class="mySwiper"
-      >
-        <swiper-slide
-          v-for="(item, index) in tests"
-          :key="index + '-caroucel-book-item'"
+      <div class="px-[10px]">
+        <swiper
+          :slidesPerView="3"
+          :spaceBetween="16"
+          :pagination="{
+            clickable: true,
+          }"
+          :loop="true"
+          :modules="modules"
+          class="mySwiper"
         >
-          <TestCard />
-        </swiper-slide>
-      </swiper>
+          <swiper-slide
+            v-for="(item, index) in tests"
+            :key="index + '-caroucel-book-item'"
+          >
+            <TestCard />
+          </swiper-slide>
+        </swiper>
+      </div>
     </div>
   </section>
 </template>

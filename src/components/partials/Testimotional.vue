@@ -15,16 +15,18 @@ const tests = [1, 2, 3, 4, 5, 6];
 </script>
 
 <template>
-  <section class="test_slider overflow-x-hidden w-full pb-20">
+  <section
+    class="test_slider slider-total-class overflow-x-hidden w-full pb-8 sm:pb-20"
+  >
     <div class="container">
       <Title :text="props.title" />
-      <div class="px-[10px]">
+      <div class="px-5px lg:px-[6px] xl:px-2">
         <swiper
+          :navigation="true"
           :breakpoints="{
             '0': {
-              slidesPerView: 2,
-              spaceBetween: 8,
-              centeredSlides: 'true',
+              slidesPerView: 1,
+              spaceBetween: 4,
             },
             '640': {
               slidesPerView: 2,
@@ -32,7 +34,7 @@ const tests = [1, 2, 3, 4, 5, 6];
             },
             '768': {
               slidesPerView: 3,
-              spaceBetween: 8,
+              spaceBetween: 10,
             },
             '1024': {
               slidesPerView: 3,
@@ -63,23 +65,20 @@ const tests = [1, 2, 3, 4, 5, 6];
 </template>
 
 <style>
-.test_slider .swiper-pagination {
-  width: auto;
-  bottom: 15px;
-  top: auto;
-  display: flex;
-  align-items: center;
+.test_slider.slider-total-class .swiper-button-prev,
+.test_slider.slider-total-class .swiper-button-next {
+  border: 1px solid rgb(179, 178, 178);
 }
-.test_slider .swiper-pagination .swiper-pagination-bullet {
-  background-color: #fff;
-  width: 12px;
-  height: 12px;
-  opacity: 1;
-  margin-right: 16px;
+.test_slider.slider-total-class .swiper-button-prev::after,
+.test_slider.slider-total-class .swiper-button-next::after {
+  color: #00000095;
 }
-.test_slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #95bef3;
-  width: 20px;
-  height: 20px;
+@media screen and (max-width: 768px) {
+  .test_slider.slider-total-class .swiper-button-prev {
+    left: 0.5rem;
+  }
+  .test_slider.slider-total-class .swiper-button-next {
+    right: 0.5rem;
+  }
 }
 </style>

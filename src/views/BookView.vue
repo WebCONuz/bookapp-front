@@ -11,14 +11,18 @@ const datas = [
 </script>
 
 <template>
-  <main class="single-book min-h-[70vh] bg-[#FAFAFA] pt-12">
+  <main
+    class="single-book min-h-[70vh] bg-[#FAFAFA] pt-6 sm:pt-8 md:pt-10 lg:pt-12"
+  >
     <!-- breadcrumb -->
     <div class="container">
       <BreadCrumb :content="datas" />
     </div>
     <!-- info book -->
-    <div class="container mb-20">
-      <div class="flex flex-col sm:flex-row sm:items-center px-[10px]">
+    <div class="container mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center px-5px lg:px-[6px] xl:px-2"
+      >
         <!-- 1 -->
         <img
           src="@/assets/images/books/book6.jpg"
@@ -29,7 +33,7 @@ const datas = [
         <div
           class="w-full lg:w-1/2 xl:w-[55%] 2xl:w-[60%] lg:pl-8 xl:pl-10 2xl:pl-12"
         >
-          <div class="flex items-center lg:block mb-8 lg:mb-0">
+          <div class="flex items-center lg:block mb-6 sm:mb-8 lg:mb-0">
             <img
               src="@/assets/images/books/book6.jpg"
               alt="wrapper-image"
@@ -44,7 +48,7 @@ const datas = [
               </h1>
 
               <!-- raiting -->
-              <div class="flex mb-6 xl:mb-8">
+              <div class="flex mb-3 sm:mb-6 xl:mb-8">
                 <span class="text-lg mr-3 sm:mr-4 text-[#701BF8]">
                   O'tkir Hoshimov
                 </span>
@@ -82,8 +86,10 @@ const datas = [
           </div>
 
           <!-- description -->
-          <div class="mb-6 xl:mb-8">
-            <h4 class="text-lg mb-4 text-[#701BF8]">Qisqacha ma'lumot</h4>
+          <div class="mb-4 sm:mb-6 xl:mb-8">
+            <h4 class="text-lg mb-2 sm:mb-4 text-[#701BF8]">
+              Qisqacha ma'lumot
+            </h4>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt
               nisi assumenda aspernatur numquam nemo, iusto cupiditate molestiae
@@ -97,30 +103,42 @@ const datas = [
           </div>
 
           <!-- files -->
-          <div class="mb-6 xl:mb-8">
-            <h4 class="text-lg mb-4 text-[#701BF8]">Mavjud formatlar</h4>
+          <div class="mb-4 sm:mb-6 xl:mb-8">
+            <h4 class="text-lg mb-3 sm:mb-4 text-[#701BF8]">
+              Mavjud formatlar
+            </h4>
             <div class="flex">
               <div class="text-center">
-                <i class="bx bxs-book-alt text-3xl text-gray-700"></i>
-                <p class="mt-2 mb-1">Qog’oz kitob</p>
-                <span class="text-gray-600">27 000 so’m</span>
+                <i
+                  class="bx bxs-book-alt text-xl sm:text-3xl text-gray-700"
+                ></i>
+                <p class="mt-2 sm:mb-1 text-sm sm:text-base">Qog’oz kitob</p>
+                <span class="text-gray-600 text-sm sm:text-base"
+                  >27 000 so’m</span
+                >
               </div>
               <div class="text-center mx-7">
-                <i class="bx bx-headphone text-3xl text-gray-700"></i>
-                <p class="mt-2 mb-1">Audio kitob</p>
-                <span class="text-gray-600">7:23 soat</span>
+                <i
+                  class="bx bx-headphone text-xl sm:text-3xl text-gray-700"
+                ></i>
+                <p class="mt-2 sm:mb-1 text-sm sm:text-base">Audio kitob</p>
+                <span class="text-gray-600 text-sm sm:text-base"
+                  >7:23 soat</span
+                >
               </div>
               <div class="text-center">
-                <i class="bx bx-mobile text-3xl text-gray-700"></i>
-                <p class="mt-2 mb-1">Electron</p>
-                <span class="text-gray-600">pdf, epub</span>
+                <i class="bx bx-mobile text-xl sm:text-3xl text-gray-700"></i>
+                <p class="mt-2 sm:mb-1 text-sm sm:text-base">Electron</p>
+                <span class="text-gray-600 text-sm sm:text-base"
+                  >pdf, epub</span
+                >
               </div>
             </div>
           </div>
 
           <!-- add to cart -->
           <button
-            class="bg-transparent text-[#701BF8] py-4 px-8 rounded-md outline-none border border-[#701BF8] hover:bg-[#701BF8] hover:text-white duration-200"
+            class="bg-transparent text-[#701BF8] py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-[#701BF8] hover:bg-[#701BF8] hover:text-white duration-200"
           >
             Javonga qo'shish
           </button>

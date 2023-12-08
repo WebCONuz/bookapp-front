@@ -22,10 +22,12 @@ const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
 </script>
 
 <template>
-  <section class="book_slider overflow-x-hidden w-full pb-10 md:pb-16 xl:pb-20">
+  <section
+    class="book_slider slider-total-class overflow-x-hidden w-full pb-10 md:pb-16 xl:pb-20"
+  >
     <div class="container">
       <Title :text="props.title" />
-      <div class="px-2">
+      <div class="px-5px lg:px-[6px] xl:px-2">
         <swiper
           :navigation="true"
           :loop="true"
@@ -68,8 +70,8 @@ const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
 </template>
 
 <style>
-.book_slider .swiper-button-prev,
-.book_slider .swiper-button-next {
+.slider-total-class .swiper-button-prev,
+.slider-total-class .swiper-button-next {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -81,36 +83,36 @@ const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
 .mySwiper:hover .swiper-button-next {
   opacity: 1;
 }
-.book_slider .swiper-button-prev::after,
-.book_slider .swiper-button-next::after {
+.slider-total-class .swiper-button-prev::after,
+.slider-total-class .swiper-button-next::after {
   font-size: 14px;
   color: #00000095;
   font-weight: bold;
 }
-.book_slider .swiper-button-prev {
+.slider-total-class .swiper-button-prev {
   left: 1.5rem;
   right: auto;
 }
-.book_slider .swiper-button-next {
+.slider-total-class .swiper-button-next {
   left: auto;
   right: 1.5rem;
 }
 
 @media screen and (max-width: 768px) {
-  .book_slider .swiper-button-prev,
-  .book_slider .swiper-button-next {
+  .slider-total-class .swiper-button-prev,
+  .slider-total-class .swiper-button-next {
     width: 30px;
     height: 30px;
     opacity: 1;
   }
-  .book_slider .swiper-button-prev::after,
-  .book_slider .swiper-button-next::after {
+  .slider-total-class .swiper-button-prev::after,
+  .slider-total-class .swiper-button-next::after {
     font-size: 10px;
   }
-  .book_slider .swiper-button-prev {
+  .slider-total-class .swiper-button-prev {
     left: 0.5rem;
   }
-  .book_slider .swiper-button-next {
+  .slider-total-class .swiper-button-next {
     right: 0.5rem;
   }
 }

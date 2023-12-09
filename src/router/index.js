@@ -34,9 +34,9 @@ const router = createRouter({
       component: () => import("../views/BookView.vue"),
     },
     {
-      path: "/user/:id",
-      name: "user-panel",
-      component: () => import("../views/UserPanelView.vue"),
+      path: "/profile",
+      name: "user-profile",
+      component: () => import("../views/ProfileView.vue"),
     },
   ],
 });

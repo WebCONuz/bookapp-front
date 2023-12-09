@@ -25,13 +25,13 @@ const datas = [
         <img
           src="@/assets/images/books/book7.jpg"
           alt="wrapper-image"
-          class="w-1/3 sm:hidden lg:block sm:w-1/2 xl:w-[45%] 2xl:w-[40%] rounded-md bg-gray-300 mb-6 sm:mb-0"
+          class="w-[100px] sm:hidden lg:block sm:w-1/2 xl:w-[45%] 2xl:w-[40%] rounded-md bg-gray-300 mb-4 sm:mb-0"
         />
         <!-- 2 -->
         <div
           class="w-full lg:w-1/2 xl:w-[55%] 2xl:w-[60%] lg:pl-8 xl:pl-10 2xl:pl-12"
         >
-          <div class="flex items-center lg:block mb-6 sm:mb-8 lg:mb-0">
+          <div class="flex items-center lg:block mb-4 sm:mb-8 lg:mb-0">
             <img
               src="@/assets/images/books/book6.jpg"
               alt="wrapper-image"
@@ -40,14 +40,14 @@ const datas = [
             <div class="w-full sm:w-2/3 sm:pl-6 lg:pl-0 lg:w-full">
               <!-- title -->
               <h1
-                class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-[#701BF8] font-semibold uppercase mb-2"
+                class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-700 font-bold uppercase mb-2"
               >
-                "Ajdar"ning tavbasi
+                Qo'rqma joning chiqsa ham
               </h1>
 
               <!-- raiting -->
               <div class="flex mb-3 sm:mb-6 xl:mb-8">
-                <span class="text-lg mr-3 sm:mr-4 text-[#701BF8]">
+                <span class="text-lg mr-3 sm:mr-4 text-gray-700 font-bold">
                   O'tkir Hoshimov
                 </span>
                 <span class="flex items-center mr-2">
@@ -63,19 +63,19 @@ const datas = [
 
               <!-- info -->
               <ul class="lg:mb-6 xl:mb-8">
-                <li class="flex text-lg mb-2">
+                <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Sahifalar soni:</span>
                   <span class="ml-3">376 ta</span>
                 </li>
-                <li class="flex text-lg mb-2">
+                <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Chop etilgan:</span>
                   <span class="ml-3">2022 yil</span>
                 </li>
-                <li class="flex text-lg mb-2">
+                <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Janri:</span>
                   <span class="ml-3">Badiiy</span>
                 </li>
-                <li class="flex text-lg mb-2">
+                <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Nashriyot</span>
                   <span class="ml-3">Nihol nashr</span>
                 </li>
@@ -85,7 +85,7 @@ const datas = [
 
           <!-- description -->
           <div class="mb-4 sm:mb-6 xl:mb-8">
-            <h4 class="text-lg mb-2 sm:mb-4 text-[#701BF8]">
+            <h4 class="text-lg mb-2 sm:mb-4 text-gray-700 font-bold">
               Qisqacha ma'lumot
             </h4>
             <p>
@@ -102,11 +102,11 @@ const datas = [
 
           <!-- files -->
           <div class="mb-4 sm:mb-6 xl:mb-8">
-            <h4 class="text-lg mb-3 sm:mb-4 text-[#701BF8]">
+            <h4 class="text-lg mb-3 sm:mb-4 text-gray-700 font-bold">
               Mavjud formatlar
             </h4>
             <div class="flex">
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <i
                   class="bx bxs-book-alt text-xl sm:text-3xl text-gray-700"
                 ></i>
@@ -114,8 +114,8 @@ const datas = [
                 <span class="text-gray-600 text-sm sm:text-base"
                   >27 000 so’m</span
                 >
-              </div>
-              <div class="text-center mx-7">
+              </div> -->
+              <div class="text-center mr-7">
                 <i
                   class="bx bx-headphone text-xl sm:text-3xl text-gray-700"
                 ></i>
@@ -135,11 +135,18 @@ const datas = [
           </div>
 
           <!-- add to cart -->
-          <button
-            class="bg-transparent text-[#701BF8] py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-[#701BF8] hover:bg-[#701BF8] hover:text-white duration-200"
-          >
-            Javonga qo'shish
-          </button>
+          <div class="flex">
+            <button
+              class="bg-transparent mr-2 text-gray-700 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 sm:hover:bg-gray-700 sm:hover:text-white duration-200"
+            >
+              Javonga qo'shish
+            </button>
+            <button
+              class="bg-transparent text-gray-700 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 sm:hover:bg-gray-700 sm:hover:text-white duration-200"
+            >
+              Fikr bildirish
+            </button>
+          </div>
         </div>
       </div>
     </section>

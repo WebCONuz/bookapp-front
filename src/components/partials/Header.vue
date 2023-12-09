@@ -150,11 +150,9 @@ onMounted(() => {
             ></i>
           </li>
           <li class="mr-4 xl:mr-6">
-            <router-link
-              to="/authors"
-              class="py-2 hover:text-[#701BF8] duration-200"
-              >Mualliflar</router-link
-            >
+            <router-link to="/" class="py-2 hover:text-[#701BF8] duration-200">
+              Bosh sahifa
+            </router-link>
           </li>
           <li class="mr-4 xl:mr-6">
             <router-link
@@ -165,11 +163,10 @@ onMounted(() => {
           </li>
           <li class="">
             <router-link
-              to="/books?more=ture"
+              to="/authors"
               class="py-2 hover:text-[#701BF8] duration-200"
+              >Mualliflar</router-link
             >
-              Ko'p o'qilgan
-            </router-link>
           </li>
         </ul>
 

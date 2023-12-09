@@ -45,7 +45,7 @@ const authors = [
 
 <template>
   <section
-    class="book_slider slider-total-class overflow-x-hidden w-full pb-10 md:pb-16 xl:pb-20"
+    class="main_slider slider-total-class overflow-x-hidden w-full pb-10 md:pb-16 xl:pb-20"
   >
     <div class="container">
       <Title :text="props.title" />

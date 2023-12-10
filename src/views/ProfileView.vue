@@ -13,6 +13,8 @@ const datas = [
     <section class="container">
       <BreadCrumb :content="datas" />
     </section>
+
+    <!-- profile info -->
     <section class="pt-5 sm:pt-10 pb-10 sm:pb-20">
       <div class="container flex flex-col items-center mb-5 sm:mb-10">
         <img
@@ -91,6 +93,8 @@ const datas = [
         </form>
       </div>
     </section>
+
+    <!-- favorite books -->
     <MainSlider title="Yoqtirgan kitoblarim" sliderType="book" />
   </div>
 </template>

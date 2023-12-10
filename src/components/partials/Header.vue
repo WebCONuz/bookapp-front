@@ -53,6 +53,7 @@ const categories = [
   },
 ];
 
+const scrolling = ref(false);
 function scrollHeader() {
   if (window.scrollY === 0) {
     scrolling.value = false;

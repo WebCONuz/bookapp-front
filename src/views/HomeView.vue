@@ -20,7 +20,7 @@ onMounted(() => {
 <template>
   <div class="home">
     <Intro />
-    <BooksGrid title="Kitoblar" />
+    <BooksGrid title="Kitoblar" :books="bookStore.books.data" />
     <CategoryGrid />
     <MainSlider title="Saralangan adabiyotlar" sliderType="book" />
     <MainSlider title="Eng ko'p o'qilgan adabiyotlar" sliderType="book" />

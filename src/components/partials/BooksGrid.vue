@@ -11,22 +11,23 @@ import Book6 from "../../assets/images/books/book6.jpg";
 
 const props = defineProps({
   title: String,
+  books: Array,
 });
 
-const books = [
-  Book1,
-  Book2,
-  Book3,
-  Book4,
-  Book5,
-  Book6,
-  Book1,
-  Book2,
-  Book3,
-  Book4,
-  Book5,
-  Book6,
-];
+// const books = [
+//   Book1,
+//   Book2,
+//   Book3,
+//   Book4,
+//   Book5,
+//   Book6,
+//   Book1,
+//   Book2,
+//   Book3,
+//   Book4,
+//   Book5,
+//   Book6,
+// ];
 </script>
 
 <template>
@@ -36,10 +37,10 @@ const books = [
       <div class="flex flex-wrap">
         <div
           class="grid_item"
-          v-for="(item, index) in books"
+          v-for="(item, index) in props.books"
           :key="index + '-book-item'"
         >
-          <BookCard :img="item" />
+          <BookCard :data="item" />
         </div>
       </div>
       <div class="text-center mt-3">

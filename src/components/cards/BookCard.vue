@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 const props = defineProps({
-  img: String,
+  data: String,
 });
 const like = ref(false);
 </script>
@@ -17,7 +17,7 @@ const like = ref(false);
     </div>
     <router-link to="/books/1" class="block mb-2">
       <img
-        :src="props.img"
+        :src="props.data?.image"
         alt="card_img"
         class="w-full h-[200px] xl:h-[240px] object-cover rounded-md"
       />
@@ -26,18 +26,23 @@ const like = ref(false);
       to="/books/1"
       class="block text-sm sm:text-base text-gray-700 font-semibold uppercase h-[22px] sm:h-[28px] overflow-hidden overflow-ellipsis whitespace-nowrap"
     >
-      Dunyoning ishlari
+      {{ props.data?.title }}
     </router-link>
-    <p class="mb-[6px] sm:mb-2 text-gray-600">O’tkir Hoshimov</p>
+    <p
+      class="mb-[6px] sm:mb-2 text-gray-600 overflow-hidden overflow-ellipsis whitespace-nowrap"
+    >
+      {{ props.data?.author_first_name }}
+      {{ props.data?.author_last_name }}
+    </p>
     <div class="flex items-center justify-between">
       <div class="flex">
         <p class="flex items-center text-gray-500">
           <i class="bx bx-show-alt text-lg sm:text-xl mr-[2px]"></i>
-          <span class="text-sm sm:text-base">35</span>
+          <span class="text-sm sm:text-base">{{ props.data?.view_count }}</span>
         </p>
         <p class="flex items-center text-gray-500 ml-2">
           <i class="bx bx-heart text-lg sm:text-xl mr-[2px]"></i>
-          <span class="text-sm sm:text-base">17</span>
+          <span class="text-sm sm:text-base">{{ props.data?.like_count }}</span>
         </p>
       </div>
       <button

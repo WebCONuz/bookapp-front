@@ -4,12 +4,16 @@ import BooksGrid from "@/components/partials/BooksGrid.vue";
 import MainSlider from "@/components/partials/MainSlider.vue";
 import CategoryGrid from "@/components/partials/CategoryGrid.vue";
 import { useBookStore } from "../stores/book";
+import { useCategoryStore } from "../stores/category";
 import { ref, onMounted } from "vue";
 
 const bookStore = useBookStore();
+const categoryStore = useCategoryStore();
 
 const getAllBook = () => {
   bookStore.getBooks({ page: 1, limit: 12 });
+  categoryStore.getOneCategory(2);
+  categoryStore.getCategories();
 };
 
 onMounted(() => {

@@ -4,15 +4,10 @@ class httpModel {
   constructor() {}
 
   // GET
-  get(parameter) {
+  get(url) {
     return new Promise((resolve, reject) => {
-      const { url } = parameter;
       axios
-        .get(url, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        .get(url)
         .then((res) => resolve(res.data))
         .catch((err) => reject(err));
     });
@@ -49,9 +44,8 @@ class httpModel {
   }
 
   // DELETE
-  delete(parameter) {
+  delete(url) {
     return new Promise((resolve, reject) => {
-      const { url } = parameter;
       axios
         .delete(url)
         .then((res) => resolve(res.data))

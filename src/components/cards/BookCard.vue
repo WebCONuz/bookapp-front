@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 const props = defineProps({
-  data: String,
+  data: Object,
 });
 const like = ref(false);
 </script>

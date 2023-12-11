@@ -41,12 +41,12 @@ export const useCategoryStore = defineStore("category", {
     async getCategories() {
       this.categories.loading = true;
       try {
-        const res = await HttpModel.get({ url: "/category" });
+        const res = await HttpModel.get("/category/list");
         console.log(res);
         this.categories.data = res.data.categories;
         this.categories.count = res.data.page_count;
       } catch (error) {
-        console.log(error);
+        console.log("+++++", error);
       } finally {
         this.categories.loading = false;
       }
@@ -56,7 +56,7 @@ export const useCategoryStore = defineStore("category", {
     async getOneCategory(id) {
       this.category.loading = true;
       try {
-        const res = await HttpModel.get({ url: `/category/${id}` });
+        const res = await HttpModel.get(`/category/${id}`);
         this.category.data = res.data;
       } catch (error) {
         console.log(error);
@@ -69,7 +69,7 @@ export const useCategoryStore = defineStore("category", {
     async getCategoryBooks(id) {
       this.books.loading = true;
       try {
-        const res = await HttpModel.get({ url: `/category/books?id=${id}` });
+        const res = await HttpModel.get(`/category/books?id=${id}`);
         this.books.data = res.data.books;
       } catch (error) {
         console.log(error);
@@ -100,7 +100,7 @@ export const useCategoryStore = defineStore("category", {
     // DELETE CATEGORY
     async deleteCategory(id) {
       try {
-        const res = await HttpModel.delete({ url: `/category/${id}` });
+        const res = await HttpModel.delete(`/category/${id}`);
         if (res.status === 200) {
           toast.success("Kategoriya o'chirildi");
         } else {

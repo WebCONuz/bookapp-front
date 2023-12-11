@@ -51,10 +51,12 @@ export const useAuthorStore = defineStore("author", {
     async getAuthors(params) {
       this.authors.loading = true;
       try {
-        const { page, limit, search } = params;
-        const res = await HttpModel.get({
-          url: `/author/list?page=${page}&limit=${limit}&search=${search}`,
-        });
+        const { page = 1, limit = 10, search } = params;
+        let getUrl = "/author/search?page=" + page + "&limit=" + limit;
+        if (search) {
+          getUrl = getUrl + "&search=" + search;
+        }
+        const res = await HttpModel.get(getUrl);
         this.authors.data = res.data;
         this.authors.count = res.data.page_count;
       } catch (error) {
@@ -68,7 +70,7 @@ export const useAuthorStore = defineStore("author", {
     async getOneAuthor(id) {
       this.author.loading = true;
       try {
-        const res = await HttpModel.get({ url: `/author/${id}` });
+        const res = await HttpModel.get(`/author/${id}`);
         this.author.data = res.data;
       } catch (error) {
         console.log(error);
@@ -122,7 +124,7 @@ export const useAuthorStore = defineStore("author", {
     // DELETE AUTHOR
     async deleteAuthor(id) {
       try {
-        const res = await HttpModel.delete({ url: `/author/${id}` });
+        const res = await HttpModel.delete(`/author/${id}`);
         if (res.status === 200) {
           toast.success("Muallif o'chirildi");
         } else {

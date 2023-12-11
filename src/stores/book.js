@@ -92,9 +92,7 @@ export const useBookStore = defineStore("book", {
         }
 
         // get
-        const res = await HttpModel.get({
-          url: getUrl,
-        });
+        const res = await HttpModel.get(getUrl);
         this.books.data = res.data.books;
         this.books.count = res.data._meta.page_count;
       } catch (error) {
@@ -113,9 +111,7 @@ export const useBookStore = defineStore("book", {
         if (search) {
           getUrl = getUrl + "&search=" + search;
         }
-        const res = await HttpModel.get({
-          url: getUrl,
-        });
+        const res = await HttpModel.get(getUrl);
         this.books.data = res.data.books;
         this.books.count = res.data._meta.page_count;
       } catch (error) {
@@ -129,7 +125,7 @@ export const useBookStore = defineStore("book", {
     async getOneBook(id) {
       this.book.loading = true;
       try {
-        const res = await HttpModel.get({ url: `/book/${id}` });
+        const res = await HttpModel.get(`/book/${id}`);
         this.book.data = res.data;
       } catch (error) {
         console.log(error);
@@ -193,7 +189,7 @@ export const useBookStore = defineStore("book", {
     // DELETE BOOK
     async deleteBook(id) {
       try {
-        const res = await HttpModel.delete({ url: `/book/${id}` });
+        const res = await HttpModel.delete(`/book/${id}`);
         if (res.status === 200) {
           toast.success("Kitob o'chirildi");
         } else {

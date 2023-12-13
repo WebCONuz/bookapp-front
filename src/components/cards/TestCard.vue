@@ -1,7 +1,7 @@
 <script setup>
-// const props = defineProps({
-//   data: Object,
-// });
+const props = defineProps({
+  data: Object,
+});
 </script>
 
 <template>
@@ -10,21 +10,18 @@
   >
     <div class="flex items-center mb-4">
       <img
-        src="../../assets/images/ui/profile.png"
+        :src="props.data?.user?.avatar_url"
         alt="avatar"
         class="w-10 lg:w-12 h-10 lg:h-12 object-cover mr-3 lg:mr-4 shadow-lg rounded-full"
       />
       <div>
-        <h4 class="font-semibold text-gray-700 lg:mb-[2px]">Anjelina Joli</h4>
-        <p class="text-gray-500 italic text-sm">Book reader</p>
+        <h4 class="font-semibold text-gray-700 lg:mb-[2px]">
+          {{ props.data?.user?.full_name }}
+        </h4>
+        <p class="text-gray-500 italic text-sm">Kitobxon</p>
       </div>
     </div>
-    <p class="text-sm lg:text-base">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-      fugiat, esse nostrum quis sit corporis necessitatibus saepe soluta illum
-      quam veniam est aperiam placeat, blanditiis ea. Consequuntur numquam a
-      neque!
-    </p>
+    <p class="text-sm lg:text-base">{{ props.data?.text }}</p>
   </div>
 </template>
 

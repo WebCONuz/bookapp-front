@@ -16,7 +16,7 @@ const getAllData = async () => {
     authorStore.author.data?.last_name;
 };
 const datas = [
-  { name: "Home", link: "/" },
+  { name: "Bosh sahifa", link: "/" },
   { name: "Barcha Mualliflar", link: "/authors" },
   {
     name: fullName.value || "Muallif",
@@ -25,7 +25,7 @@ const datas = [
 ];
 
 onMounted(() => {
-  getAllData({ page: 1, limit: 18 });
+  getAllData();
 });
 </script>
 

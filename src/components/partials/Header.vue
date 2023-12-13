@@ -2,10 +2,11 @@
 import { onMounted, ref } from "vue";
 import SubMenu from "../ui/SubMenu.vue";
 import Accordion from "../ui/Accordion.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useCategoryStore } from "../../stores/category";
 
 const route = useRoute();
+const router = useRouter();
 const categoryStore = useCategoryStore();
 const openSubMenu = ref(false);
 const searchWord = ref("");
@@ -61,6 +62,15 @@ function scrollHeader() {
     scrolling.value = false;
   } else {
     scrolling.value = true;
+  }
+}
+
+const token = localStorage.getItem("book_app_token");
+function goProfile() {
+  if (token) {
+    router.push({ name: "user-profile" });
+  } else {
+    router.push({ name: "auth" });
   }
 }
 
@@ -217,20 +227,16 @@ onMounted(() => {
 
         <!-- avatar -->
         <ul class="hidden lg:flex items-center">
-          <li class="mr-4">
-            <router-link to="/profile" class="relative">
-              <i class="bx bx-heart text-2xl text-gray-600"></i>
-              <div
-                class="absolute w-[18px] h-[18px] rounded-full bg-gray-600 -right-[7px] -bottom-[1px] flex items-center justify-center"
-              >
-                <span class="text-[10px] text-white font-medium">12</span>
-              </div>
-            </router-link>
+          <li class="mr-4 relative" @click="goProfile">
+            <i class="bx bx-heart text-2xl text-gray-600"></i>
+            <div
+              class="absolute w-[18px] h-[18px] rounded-full bg-gray-600 -right-[7px] -bottom-[1px] flex items-center justify-center"
+            >
+              <span class="text-[10px] text-white font-medium">12</span>
+            </div>
           </li>
-          <li class="flex items-center">
-            <router-link to="/profile" class="relative">
-              <i class="bx bx-user-circle text-2xl text-gray-600"></i>
-            </router-link>
+          <li class="relative" @click="goProfile">
+            <i class="bx bx-user-circle text-2xl text-gray-600"></i>
           </li>
         </ul>
       </div>

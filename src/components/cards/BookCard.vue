@@ -15,7 +15,7 @@ const like = ref(false);
       <i v-if="like" class="bx bxs-heart text-lg sm:text-xl text-red-500"></i>
       <i v-else class="bx bx-heart text-lg sm:text-xl text-gray-400"></i>
     </div>
-    <router-link to="/books/1" class="block mb-2">
+    <router-link :to="'/books/' + props.data?.id" class="block mb-2">
       <img
         :src="props.data?.image"
         alt="card_img"

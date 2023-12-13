@@ -1,8 +1,14 @@
-<script setup></script>
+<script setup>
+import AuthForm from "../components/auth/AuthForm.vue";
+</script>
 
 <template>
   <div class="home">
-    <h1 class="text-[#701BF8]">This is an Auth page</h1>
+    <div class="container py-16">
+      <div class="w-1/2 mx-auto">
+        <AuthForm />
+      </div>
+    </div>
   </div>
 </template>
 

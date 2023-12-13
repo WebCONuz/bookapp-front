@@ -9,9 +9,9 @@ import "swiper/css/navigation";
 
 const props = defineProps({
   title: String,
+  data: Array,
 });
 const modules = ref([Navigation]);
-const tests = [1, 2, 3, 4, 5, 6];
 </script>
 
 <template>
@@ -53,10 +53,10 @@ const tests = [1, 2, 3, 4, 5, 6];
           class="mySwiper"
         >
           <swiper-slide
-            v-for="(item, index) in tests"
+            v-for="(item, index) in props.data"
             :key="index + '-caroucel-book-item'"
           >
-            <TestCard />
+            <TestCard :data="item" />
           </swiper-slide>
         </swiper>
       </div>

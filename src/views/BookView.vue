@@ -2,12 +2,44 @@
 import Testimotional from "@/components/partials/Testimotional.vue";
 import MainSlider from "@/components/partials/MainSlider.vue";
 import BreadCrumb from "@/components/ui/BreadCrumb.vue";
+import { useBookStore } from "../stores/book";
+import { useRoute, useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
+
+const showPlayer = ref(false);
+const route = useRoute();
+const router = useRouter();
+const bookStore = useBookStore();
+const getAllData = async () => {
+  await bookStore.getOneBook(route.params.id);
+};
 
 const datas = [
-  { name: "Home", link: "/" },
-  { name: "Books", link: "/books" },
-  { name: "O'tgan kunlar", link: "/books/1" },
+  { name: "Bosh sahifa", link: "/" },
+  { name: "Barcha kitoblar", link: "/books" },
+  { name: "Kitob sahifasi", link: "/books/" + route.params.id },
 ];
+
+const token = localStorage.getItem("book_app_token");
+function addToCart() {
+  if (token) {
+    console.log("Javonga qo'shildi");
+  } else {
+    router.push({ name: "auth" });
+  }
+}
+
+function writeDescription() {
+  if (token) {
+    console.log("Fikr qo'shildi");
+  } else {
+    router.push({ name: "auth" });
+  }
+}
+
+onMounted(() => {
+  getAllData();
+});
 </script>
 
 <template>
@@ -23,7 +55,7 @@ const datas = [
       >
         <!-- 1 -->
         <img
-          src="@/assets/images/books/book7.jpg"
+          :src="bookStore.book.data?.image"
           alt="wrapper-image"
           class="w-[100px] sm:hidden lg:block sm:w-1/2 xl:w-[45%] 2xl:w-[40%] rounded-md bg-gray-300 mb-4 sm:mb-0"
         />
@@ -33,7 +65,7 @@ const datas = [
         >
           <div class="flex items-center lg:block mb-4 sm:mb-8 lg:mb-0">
             <img
-              src="@/assets/images/books/book6.jpg"
+              :src="bookStore.book.data?.image"
               alt="wrapper-image"
               class="w-[44%] sm:w-1/3 rounded-md bg-gray-300 hidden sm:block lg:hidden"
             />
@@ -42,27 +74,28 @@ const datas = [
               <h1
                 class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-700 font-bold uppercase mb-2"
               >
-                Qo'rqma joning chiqsa ham
+                {{ bookStore.book.data?.title }}
               </h1>
 
               <!-- raiting -->
               <div class="flex mb-3 sm:mb-6 xl:mb-8">
                 <span class="text-lg mr-3 sm:mr-4 text-gray-700 font-bold">
-                  O'tkir Hoshimov
+                  {{ bookStore.book.data?.author_first_name }}
+                  {{ bookStore.book.data?.author_last_name }}
                 </span>
                 <span class="flex items-center mr-2">
                   <i class="bx bxs-star mr-1"></i>
-                  <span>4.2</span>
+                  <span>{{ bookStore.book.data?.like_count }}</span>
                 </span>
                 <span>|</span>
                 <span class="flex items-center ml-2">
                   <i class="bx bx-show-alt mr-1"></i>
-                  <span>37</span>
+                  <span>{{ bookStore.book.data?.view_count }}</span>
                 </span>
               </div>
 
               <!-- info -->
-              <ul class="lg:mb-6 xl:mb-8">
+              <!-- <ul class="lg:mb-6 xl:mb-8">
                 <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Sahifalar soni:</span>
                   <span class="ml-3">376 ta</span>
@@ -73,13 +106,13 @@ const datas = [
                 </li>
                 <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Janri:</span>
-                  <span class="ml-3">Badiiy</span>
+                  <span class="ml-3">{{ bookStore.book.data?.book_type }}</span>
                 </li>
                 <li class="flex sm:text-lg mb-1 sm:mb-2">
                   <span class="text-gray-600">Nashriyot</span>
                   <span class="ml-3">Nihol nashr</span>
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </div>
 
@@ -89,14 +122,7 @@ const datas = [
               Qisqacha ma'lumot
             </h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt
-              nisi assumenda aspernatur numquam nemo, iusto cupiditate molestiae
-              soluta, qui consectetur quam blanditiis officia eum nihil incidunt
-              tempore voluptatem repellendus. Rerum aspernatur obcaecati eius
-              nihil blanditiis doloremque velit odio dolorem facere non. Illum
-              porro officia facere. Tenetur adipisci iste repudiandae molestias
-              consequatur officia vero nesciunt labore voluptas, pariatur quod
-              totam quae!
+              {{ bookStore.book.data?.description }}
             </p>
           </div>
 
@@ -106,42 +132,50 @@ const datas = [
               Mavjud formatlar
             </h4>
             <div class="flex">
-              <!-- <div class="text-center">
-                <i
-                  class="bx bxs-book-alt text-xl sm:text-3xl text-gray-700"
-                ></i>
-                <p class="mt-2 sm:mb-1 text-sm sm:text-base">Qog’oz kitob</p>
-                <span class="text-gray-600 text-sm sm:text-base"
-                  >27 000 so’m</span
-                >
-              </div> -->
-              <div class="text-center mr-7">
+              <div
+                class="text-center mr-7"
+                v-if="bookStore.book.data?.audio_url"
+                @click="showPlayer = true"
+              >
                 <i
                   class="bx bx-headphone text-xl sm:text-3xl text-gray-700"
                 ></i>
                 <p class="mt-2 sm:mb-1 text-sm sm:text-base">Audio kitob</p>
-                <span class="text-gray-600 text-sm sm:text-base"
-                  >7:23 soat</span
-                >
+                <!-- <span class="text-gray-600 text-sm sm:text-base"
+                  >7:23 soat</span 
+                > -->
               </div>
-              <div class="text-center">
+              <a
+                v-if="bookStore.book.data?.download_url"
+                :href="bookStore.book.data?.download_url"
+                class="text-center inline-block"
+                target="_blank"
+              >
                 <i class="bx bx-mobile text-xl sm:text-3xl text-gray-700"></i>
                 <p class="mt-2 sm:mb-1 text-sm sm:text-base">Electron</p>
-                <span class="text-gray-600 text-sm sm:text-base"
+                <!-- <span class="text-gray-600 text-sm sm:text-base"
                   >pdf, epub</span
-                >
-              </div>
+                > -->
+              </a>
             </div>
+            <audio
+              v-if="showPlayer"
+              :src="bookStore.book.data?.audio_url"
+              controls
+              class="mt-4"
+            ></audio>
           </div>
 
           <!-- add to cart -->
           <div class="flex">
             <button
+              @click="addToCart"
               class="bg-transparent mr-2 text-gray-700 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 sm:hover:bg-gray-700 sm:hover:text-white duration-200"
             >
               Javonga qo'shish
             </button>
             <button
+              @click="writeDescription"
               class="bg-transparent text-gray-700 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 sm:hover:bg-gray-700 sm:hover:text-white duration-200"
             >
               Fikr bildirish
@@ -150,8 +184,15 @@ const datas = [
         </div>
       </div>
     </section>
-    <Testimotional title="Foydalanuvchilar fikri" />
-    <MainSlider title="Sizga yoqishi mumkin" sliderType="book" />
+    <Testimotional
+      title="Foydalanuvchilar fikri"
+      :data="bookStore.book.data?.comments"
+    />
+    <MainSlider
+      title="Sizga yoqishi mumkin"
+      sliderType="book"
+      :data="bookStore.book.data?.similar_books"
+    />
   </div>
 </template>
 

@@ -122,7 +122,9 @@ onMounted(() => {
           <li
             class="category relative flex px-4 items-center border border-gray-300 rounded cursor-pointer"
             :class="
-              route.path !== '/books' ? 'mr-[6px] xl:mr-2' : 'mr-4 xl:mr-6'
+              route.path !== '/books' && route.path !== '/authors'
+                ? 'mr-[6px] xl:mr-2'
+                : 'mr-4 xl:mr-6'
             "
           >
             <i class="bx bx-menu text-lg"></i>
@@ -133,7 +135,10 @@ onMounted(() => {
               class="open-sub-menu"
             />
           </li>
-          <li class="relative mr-4 xl:mr-6" v-if="route.path !== '/books'">
+          <li
+            class="relative mr-4 xl:mr-6"
+            v-if="route.path !== '/books' && route.path !== '/authors'"
+          >
             <input
               type="text"
               placeholder="search"

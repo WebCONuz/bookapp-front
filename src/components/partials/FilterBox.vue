@@ -1,4 +1,19 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const props = defineProps({
+  searchFunction: Function,
+});
+
+const search = (e) => {
+  props.searchFunction({
+    page: 1,
+    limit: 18,
+    search: e.target.value,
+  });
+};
+</script>
 
 <template>
   <section
@@ -12,6 +27,7 @@
         type="text"
         placeholder="search"
         class="py-2 px-4 rounded-l outline-none border border-gray-300 w-[85%]"
+        @input="search"
       />
       <button
         class="py-2 rounded-r outline-none w-[15%] bg-gray-400 relative border-none"
@@ -24,6 +40,7 @@
 
     <!-- select -->
     <select
+      v-if="route.path === '/books'"
       class="w-full sm:w-[30%] md:w-auto py-2 px-4 rounded outline-none border border-gray-300"
     >
       <option value="1">Barcha kitoblar</option>

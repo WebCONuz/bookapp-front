@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 
 const props = defineProps({
   title: String,
+  data: Array,
 });
 const modules = ref([Navigation]);
 </script>
@@ -46,7 +47,7 @@ const modules = ref([Navigation]);
       class="mySwiper"
     >
       <swiper-slide
-        v-for="(item, index) in books"
+        v-for="(item, index) in props.data"
         :key="index + '-caroucel-book-item'"
       >
         <BookCard :data="item" />

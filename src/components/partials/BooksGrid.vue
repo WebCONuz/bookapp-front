@@ -1,33 +1,13 @@
 <script setup>
 import BookCard from "../cards/BookCard.vue";
 import Title from "../ui/Title.vue";
-
-import Book1 from "../../assets/images/books/book1.jpg";
-import Book2 from "../../assets/images/books/book2.jpg";
-import Book3 from "../../assets/images/books/book3.jpg";
-import Book4 from "../../assets/images/books/book4.jpg";
-import Book5 from "../../assets/images/books/book5.jpg";
-import Book6 from "../../assets/images/books/book6.jpg";
+import { useRoute } from "vue-router";
 
 const props = defineProps({
   title: String,
   books: Array,
 });
-
-// const books = [
-//   Book1,
-//   Book2,
-//   Book3,
-//   Book4,
-//   Book5,
-//   Book6,
-//   Book1,
-//   Book2,
-//   Book3,
-//   Book4,
-//   Book5,
-//   Book6,
-// ];
+const route = useRoute();
 </script>
 
 <template>
@@ -43,12 +23,13 @@ const props = defineProps({
           <BookCard :data="item" />
         </div>
       </div>
-      <div class="text-center mt-3">
-        <button
-          class="rounded-md py-1 sm:py-2 px-3 sm:px-5 text-sm sm:text-base border border-[#701BF8] text-[#701BF8] outline-none hover:text-white hover:bg-[#701BF8] duration-200"
+      <div class="text-center mt-3" v-if="route.path === '/'">
+        <router-link
+          to="/books"
+          class="inline-block rounded-md py-1 sm:py-2 px-3 sm:px-5 text-sm sm:text-base border border-[#701BF8] text-[#701BF8] outline-none hover:text-white hover:bg-[#701BF8] duration-200"
         >
           See more
-        </button>
+        </router-link>
       </div>
     </div>
   </section>

@@ -42,11 +42,9 @@ export const useCategoryStore = defineStore("category", {
       this.categories.loading = true;
       try {
         const res = await HttpModel.get("/category/list");
-        console.log(res);
-        this.categories.data = res.data.categories;
-        this.categories.count = res.data.page_count;
+        this.categories.data = res.data;
       } catch (error) {
-        console.log("+++++", error);
+        console.log(error);
       } finally {
         this.categories.loading = false;
       }

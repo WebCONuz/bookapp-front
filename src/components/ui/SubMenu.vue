@@ -14,40 +14,42 @@ const props = defineProps({
       :key="index + '-sub-menu-item'"
     >
       <!-- sub menu content -->
-      <div
+      <router-link
         class="p-3 w-full flex items-center justify-between"
         :class="
           index + 1 === props.data?.length ? '' : 'border-b border-gray-200'
         "
+        :to="'/books?category=' + item?.category_name"
       >
-        <span>{{ item.title }}</span>
+        <span>{{ item.category_name }}</span>
         <i
           class="bx bx-chevron-right"
-          v-if="item?.subCategories?.length > 0"
+          v-if="item?.subcategories?.length > 0"
         ></i>
-      </div>
+      </router-link>
       <!-- sub menu chid -->
-      <ul
+      <div
         class="sub-child-menu w-[200px] bg-white absolute top-0 border border-gray-300 duration-200"
-        v-if="item?.subCategories?.length > 0"
+        v-if="item?.subcategories?.length > 0"
       >
-        <li
-          v-for="(sub, i) in item?.subCategories"
+        <router-link
+          v-for="(sub, i) in item?.subcategories"
           :key="i + '-sub-child-item'"
-          class="px-3 text-black hover:bg-gray-100 hover:text-[#701BF8] duration-150"
+          class="px-3 text-black hover:bg-gray-100 hover:text-[#701BF8] duration-150 block"
+          :to="'/books?subcategory=' + sub?.subcategory_name"
         >
           <div
             class="p-3"
             :class="
-              i + 1 === item?.subCategories?.length
+              i + 1 === item?.subcategories?.length
                 ? ''
                 : 'border-b border-gray-200'
             "
           >
-            {{ sub }}
+            {{ sub?.subcategory_name }}
           </div>
-        </li>
-      </ul>
+        </router-link>
+      </div>
     </li>
   </ul>
 </template>

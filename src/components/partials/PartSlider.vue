@@ -6,18 +6,10 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import Book1 from "@/assets/images/books/book1.jpg";
-import Book2 from "@/assets/images/books/book2.jpg";
-import Book3 from "@/assets/images/books/book3.jpg";
-import Book4 from "@/assets/images/books/book4.jpg";
-import Book5 from "@/assets/images/books/book5.jpg";
-import Book6 from "@/assets/images/books/book6.jpg";
-
 const props = defineProps({
   title: String,
 });
 const modules = ref([Navigation]);
-const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
 </script>
 
 <template>
@@ -57,7 +49,7 @@ const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
         v-for="(item, index) in books"
         :key="index + '-caroucel-book-item'"
       >
-        <BookCard :img="item" />
+        <BookCard :data="item" />
       </swiper-slide>
     </swiper>
   </section>

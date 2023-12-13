@@ -14,6 +14,16 @@ export const useBookStore = defineStore("book", {
       data: null,
       loading: false,
     },
+    topBook: {
+      data: null,
+      loading: false,
+      count: 0,
+    },
+    readBook: {
+      data: null,
+      loading: false,
+      count: 0,
+    },
   }),
   actions: {
     // CREATE BOOK
@@ -103,7 +113,7 @@ export const useBookStore = defineStore("book", {
     },
 
     // SEARCH BOOKS
-    async searchBook(params) {
+    async searchBooks(params) {
       this.books.loading = true;
       try {
         const { page = 1, limit = 10, search } = params;
@@ -118,6 +128,40 @@ export const useBookStore = defineStore("book", {
         console.log(error);
       } finally {
         this.books.loading = false;
+      }
+    },
+
+    // TOP BOOKS
+    async topBooks(params) {
+      this.topBook.loading = true;
+      try {
+        const { page = 1, limit = 10 } = params;
+        const res = await HttpModel.get(
+          `/book/top?page=${page}&limit=${limit}`
+        );
+        this.topBook.data = res.data.books;
+        this.topBook.count = res.data._meta.page_count;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.topBook.loading = false;
+      }
+    },
+
+    // MOST READ BOOKS
+    async mostReadBooks(params) {
+      this.readBook.loading = true;
+      try {
+        const { page = 1, limit = 10 } = params;
+        const res = await HttpModel.get(
+          `/book/mostread?page=${page}&limit=${limit}`
+        );
+        this.readBook.data = res.data.books;
+        this.readBook.count = res.data._meta.page_count;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.readBook.loading = false;
       }
     },
 

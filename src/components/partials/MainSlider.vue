@@ -8,39 +8,12 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import Book1 from "@/assets/images/books/book1.jpg";
-import Book2 from "@/assets/images/books/book2.jpg";
-import Book3 from "@/assets/images/books/book3.jpg";
-import Book4 from "@/assets/images/books/book4.jpg";
-import Book5 from "@/assets/images/books/book5.jpg";
-import Book6 from "@/assets/images/books/book6.jpg";
-
-import Author1 from "@/assets/images/authors/author1.jpg";
-import Author2 from "@/assets/images/authors/author2.jpg";
-import Author3 from "@/assets/images/authors/author3.jpg";
-import Author4 from "@/assets/images/authors/author4.jpg";
-import Author5 from "@/assets/images/authors/author5.jpg";
-import Author6 from "@/assets/images/authors/author6.jpg";
-import Author7 from "@/assets/images/authors/author7.jpg";
-
 const props = defineProps({
   title: String,
   sliderType: String,
+  data: Array,
 });
 const modules = ref([Navigation]);
-const books = [Book1, Book2, Book3, Book4, Book5, Book6, Book1, Book2, Book3];
-const authors = [
-  Author1,
-  Author2,
-  Author3,
-  Author4,
-  Author5,
-  Author6,
-  Author7,
-  Author3,
-  Author4,
-  Author5,
-];
 </script>
 
 <template>
@@ -80,11 +53,11 @@ const authors = [
           class="mySwiper"
         >
           <swiper-slide
-            v-for="(item, index) in sliderType === 'book' ? books : authors"
+            v-for="(item, index) in props.data"
             :key="index + '-caroucel-book-item'"
           >
-            <BookCard v-if="sliderType === 'book'" :img="item" />
-            <AuthorCard v-else :img="item" />
+            <BookCard v-if="props.sliderType === 'book'" :data="item" />
+            <AuthorCard v-else :data="item" />
           </swiper-slide>
         </swiper>
       </div>

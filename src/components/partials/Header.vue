@@ -3,8 +3,10 @@ import { onMounted, ref } from "vue";
 import SubMenu from "../ui/SubMenu.vue";
 import Accordion from "../ui/Accordion.vue";
 import { useRoute } from "vue-router";
+import { useCategoryStore } from "../../stores/category";
 
 const route = useRoute();
+const categoryStore = useCategoryStore();
 const openSubMenu = ref(false);
 const searchWord = ref("");
 
@@ -63,6 +65,7 @@ function scrollHeader() {
 }
 
 onMounted(() => {
+  categoryStore.getCategories({ page: 1, limit: 10 });
   window.addEventListener("scroll", () => {
     scrollHeader();
   });
@@ -125,7 +128,10 @@ onMounted(() => {
             <i class="bx bx-menu text-lg"></i>
             <span class="py-2 ml-2 mr-1">Kategoriyalar</span>
             <i class="bx bx-chevron-down text-lg"></i>
-            <SubMenu :data="categories" class="open-sub-menu" />
+            <SubMenu
+              :data="categoryStore.categories.data"
+              class="open-sub-menu"
+            />
           </li>
           <li class="relative mr-4 xl:mr-6" v-if="route.path !== '/books'">
             <input
@@ -197,7 +203,7 @@ onMounted(() => {
               Kategoriyalar
             </h4>
             <Accordion
-              v-for="(item, index) in categories"
+              v-for="(item, index) in categoryStore.categories.data"
               :key="index + '-res-menu-item'"
               :data="item"
             />

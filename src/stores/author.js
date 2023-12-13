@@ -52,12 +52,12 @@ export const useAuthorStore = defineStore("author", {
       this.authors.loading = true;
       try {
         const { page = 1, limit = 10, search } = params;
-        let getUrl = "/author/search?page=" + page + "&limit=" + limit;
+        let getUrl = "/author/list?page=" + page + "&limit=" + limit;
         if (search) {
           getUrl = getUrl + "&search=" + search;
         }
         const res = await HttpModel.get(getUrl);
-        this.authors.data = res.data;
+        this.authors.data = res.data.authors;
         this.authors.count = res.data.page_count;
       } catch (error) {
         console.log(error);

@@ -32,7 +32,7 @@ const route = useRoute();
         </router-link>
       </div>
     </div>
-    <div class="container text-center py-16">
+    <div class="container text-center py-16" v-else>
       <b class="text-5xl text-gray-700">404</b>
       <p class="text-xl mt-2 text-gray-500">Kitoblar topilmadi</p>
     </div>

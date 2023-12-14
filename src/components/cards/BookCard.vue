@@ -1,18 +1,61 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useLikeStore } from "../../stores/like";
+
+const likeStore = useLikeStore();
 const props = defineProps({
   data: Object,
 });
-const like = ref(false);
+
+// Write To Locale Storage
+function writeToLocaleStorage(type, store, data) {
+  const array = JSON.parse(globalThis?.localStorage?.getItem(type));
+  const x = array?.find((el) => el.id === data.id);
+  if (x?.id) {
+    store.deleteCart(data.id);
+    return false;
+  } else {
+    store.addCart({
+      ...data,
+      count: 1,
+    });
+    return true;
+  }
+}
+
+// Check From Locale Storage
+function checkFromLocaleStorage(type, data) {
+  const array = JSON.parse(globalThis?.localStorage?.getItem(type));
+  const x = array?.find((el) => el.id == data.id);
+  if (x?.id) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// like cart
+const addedLike = ref(false);
+function addDataToLike() {
+  addedLike.value = writeToLocaleStorage("like", likeStore, props.data);
+}
+
+// Check CART
+onMounted(() => {
+  addedLike.value = checkFromLocaleStorage("like", props.data);
+});
 </script>
 
 <template>
   <div class="card p-2 border border-gray-300 bg-white rounded-md relative">
     <div
-      @click="like = !like"
+      @click="addDataToLike"
       class="absolute top-3 right-3 sm:right-4 border border-gray-300 bg-white rounded-md w-6 sm:w-7 h-6 sm:h-7 flex items-center justify-center cursor-pointer"
     >
-      <i v-if="like" class="bx bxs-heart text-lg sm:text-xl text-red-500"></i>
+      <i
+        v-if="addedLike"
+        class="bx bxs-heart text-lg sm:text-xl text-red-500"
+      ></i>
       <i v-else class="bx bx-heart text-lg sm:text-xl text-gray-400"></i>
     </div>
     <router-link :to="'/books/' + props.data?.id" class="block mb-2">

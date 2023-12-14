@@ -34,11 +34,26 @@ const router = createRouter({
       component: () => import("../views/BookView.vue"),
     },
     {
+      path: "/favorite",
+      name: "favorite",
+      component: () => import("../views/FavoriteView.vue"),
+    },
+    {
       path: "/profile",
       name: "user-profile",
       component: () => import("../views/ProfileView.vue"),
     },
   ],
+
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+      };
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 export default router;

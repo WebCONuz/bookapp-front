@@ -17,6 +17,9 @@ class httpModel {
   post(parameter) {
     return new Promise((resolve, reject) => {
       const { url, payload, file } = parameter;
+      console.log({
+        "Content-Type": file ? "multipart/form-data" : "application/json",
+      });
       axios
         .post(url, payload, {
           headers: {

@@ -4,10 +4,14 @@ import SubMenu from "../ui/SubMenu.vue";
 import Accordion from "../ui/Accordion.vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCategoryStore } from "../../stores/category";
+import { useLikeStore } from "@/stores/like";
+import { storeToRefs } from "pinia";
 
 const route = useRoute();
 const router = useRouter();
 const categoryStore = useCategoryStore();
+const likeStore = useLikeStore();
+const { getLike } = storeToRefs(likeStore);
 const openSubMenu = ref(false);
 const searchWord = ref("");
 
@@ -182,13 +186,18 @@ onMounted(() => {
 
         <!-- avatar -->
         <ul class="hidden lg:flex items-center">
-          <li class="mr-4 relative" @click="goProfile">
-            <i class="bx bx-heart text-2xl text-gray-600"></i>
-            <div
-              class="absolute w-[18px] h-[18px] rounded-full bg-gray-600 -right-[7px] -bottom-[1px] flex items-center justify-center"
-            >
-              <span class="text-[10px] text-white font-medium">12</span>
-            </div>
+          <li class="mr-4">
+            <router-link to="/favorite" class="relative">
+              <i class="bx bx-heart text-2xl text-gray-600"></i>
+              <div
+                v-if="getLike?.length"
+                class="absolute w-[18px] h-[18px] rounded-full bg-red-600 -right-[7px] -bottom-[1px] flex items-center justify-center"
+              >
+                <span class="text-[10px] text-white font-medium">{{
+                  getLike?.length
+                }}</span>
+              </div>
+            </router-link>
           </li>
           <li class="relative" @click="goProfile">
             <i class="bx bx-user-circle text-2xl text-gray-600"></i>

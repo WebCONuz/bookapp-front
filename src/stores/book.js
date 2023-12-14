@@ -26,54 +26,6 @@ export const useBookStore = defineStore("book", {
     },
   }),
   actions: {
-    // CREATE BOOK
-    async createBook(params) {
-      try {
-        const { data, formDataArray } = params;
-        let status = true;
-
-        //   file upload
-        const files = [];
-        for (let i = 0; i < formDataArray?.length; i++) {
-          const res = await HttpModel.post({
-            url: "/store/upload",
-            data: formDataArray[i],
-            file: true,
-          });
-
-          if (res.status === 200) {
-            files[i] = res.file_url;
-          } else {
-            status = false;
-            break;
-          }
-        }
-
-        //   post
-        if (status) {
-          const response = await HttpModel.post({
-            url: "/book",
-            payload: {
-              ...data,
-              image: files[0],
-              audio_url: files[1],
-              download_url: files[2],
-            },
-            file: false,
-          });
-          if (response.status === 201) {
-            toast.success("Kitob yaratildi");
-          } else {
-            toast.error("Ma'lumotlarni yuklashda xatolik");
-          }
-        } else {
-          toast.error("Fayl yuklashda xatolik yuz berdi");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
     // GET ALL BOOKS
     async getBooks(params) {
       this.books.loading = true;
@@ -110,6 +62,24 @@ export const useBookStore = defineStore("book", {
         console.log(error);
       } finally {
         this.books.loading = false;
+      }
+    },
+
+    //
+    async postComment(data) {
+      try {
+        const response = await HttpModel.post({
+          url: "/comment/post",
+          payload: data,
+          file: false,
+        });
+        if (response.status === "CREATED") {
+          toast.success("Bildirgan fikingiz uchun raxmat");
+        } else {
+          toast.error("Ma'lumotlarni yuklashda xatolik");
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
 
@@ -176,72 +146,6 @@ export const useBookStore = defineStore("book", {
         console.log(error);
       } finally {
         this.book.loading = false;
-      }
-    },
-
-    // UPDATE BOOK
-    async updateBook(params) {
-      try {
-        const { id, data, formDataArray } = params;
-        let status = true;
-
-        // file upload
-        const files = [];
-        for (let i = 0; i < formDataArray?.length; i++) {
-          if (typeof formDataArray[i] !== "string") {
-            const res = await HttpModel.post({
-              url: "/store/upload",
-              data: formDataArray[i],
-              file: true,
-            });
-
-            if (res.status === 200) {
-              files[i] = res.file_url;
-            } else {
-              status = false;
-              break;
-            }
-          } else {
-            files[i] = formDataArray[i];
-          }
-        }
-
-        // put
-        if (status) {
-          const response = await HttpModel.put({
-            url: `/book/${id}`,
-            payload: {
-              ...data,
-              image: files[0],
-              audio_url: files[1],
-              download_url: files[2],
-            },
-            file: false,
-          });
-          if (response.status === 200) {
-            toast.success("Kitob yangilandi");
-          } else {
-            toast.error("Ma'lumotlarni yuklashda xatolik");
-          }
-        } else {
-          toast.error("Fayl yuklashda xatolik yuz berdi");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    // DELETE BOOK
-    async deleteBook(id) {
-      try {
-        const res = await HttpModel.delete(`/book/${id}`);
-        if (res.status === 200) {
-          toast.success("Kitob o'chirildi");
-        } else {
-          toast.error("Kitob o'chirishda xatolik");
-        }
-      } catch (error) {
-        console.log(error);
       }
     },
   },

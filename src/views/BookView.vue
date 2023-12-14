@@ -5,45 +5,91 @@ import BreadCrumb from "@/components/ui/BreadCrumb.vue";
 import { useBookStore } from "../stores/book";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
+import DescrModal from "../components/modals/DescrModal.vue";
+import { useLikeStore } from "@/stores/like";
 
+const likeStore = useLikeStore();
 const showPlayer = ref(false);
 const route = useRoute();
 const router = useRouter();
 const bookStore = useBookStore();
-const getAllData = async () => {
-  await bookStore.getOneBook(route.params.id);
-};
+const openModal = ref(null);
 
+// breadcreamb data
 const datas = [
   { name: "Bosh sahifa", link: "/" },
   { name: "Barcha kitoblar", link: "/books" },
   { name: "Kitob sahifasi", link: "/books/" + route.params.id },
 ];
 
+// get all
+const getAllData = async () => {
+  await bookStore.getOneBook(route.params.id);
+};
+
+// write description
 const token = localStorage.getItem("book_app_token");
-function addToCart() {
-  if (token) {
-    console.log("Javonga qo'shildi");
-  } else {
-    router.push({ name: "auth" });
-  }
-}
-
+const user = localStorage.getItem("book_app_user");
 function writeDescription() {
-  if (token) {
-    console.log("Fikr qo'shildi");
+  if (token && user) {
+    openModal.value.openModal();
   } else {
     router.push({ name: "auth" });
   }
 }
 
-onMounted(() => {
-  getAllData();
+// Write favorite To Locale Storage
+function writeToLocaleStorage(type, store, data) {
+  const array = JSON.parse(globalThis?.localStorage?.getItem(type));
+  const x = array?.find((el) => el.id === data?.id);
+  if (x?.id) {
+    store.deleteCart(data.id);
+    return false;
+  } else {
+    store.addCart({
+      ...data,
+      count: 1,
+    });
+    return true;
+  }
+}
+
+// Check favorite From Locale Storage
+function checkFromLocaleStorage(type, data) {
+  const array = JSON.parse(globalThis?.localStorage?.getItem(type));
+  const x = array?.find((el) => el.id == data?.id);
+  if (x?.id) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// like
+const addedLike = ref(false);
+function addDataToLike() {
+  addedLike.value = writeToLocaleStorage(
+    "like",
+    likeStore,
+    bookStore.book.data
+  );
+}
+
+onMounted(async () => {
+  await bookStore.getOneBook(route.params.id);
+  addedLike.value = checkFromLocaleStorage("like", bookStore.book.data);
 });
 </script>
 
 <template>
+  <DescrModal
+    ref="openModal"
+    :userId="user"
+    :bookId="route.params.id"
+    :getAll="getAllData"
+  />
   <div class="single-book pt-6 sm:pt-8 md:pt-10 lg:pt-12">
+    <!-- <pre>{{ bookStore.book.data }}</pre> -->
     <!-- breadcrumb -->
     <section class="container mb-5 sm:mb-8">
       <BreadCrumb :content="datas" />
@@ -169,10 +215,15 @@ onMounted(() => {
           <!-- add to cart -->
           <div class="flex">
             <button
-              @click="addToCart"
-              class="bg-transparent mr-2 text-gray-700 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 sm:hover:bg-gray-700 sm:hover:text-white duration-200"
+              @click="addDataToLike"
+              class="bg-transparent mr-2 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 duration-200"
+              :class="
+                addedLike
+                  ? 'bg-gray-700 text-white opacity-50'
+                  : 'text-gray-700 sm:hover:bg-gray-700 sm:hover:text-white'
+              "
             >
-              Javonga qo'shish
+              {{ addedLike ? "Javondan o'chirish" : "Javonga qo'shish" }}
             </button>
             <button
               @click="writeDescription"

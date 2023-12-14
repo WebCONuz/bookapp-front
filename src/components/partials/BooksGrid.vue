@@ -12,7 +12,7 @@ const route = useRoute();
 
 <template>
   <section class="books-grid pb-5 md:pb-10">
-    <div class="container">
+    <div class="container" v-if="props.books?.length > 0">
       <Title :text="props.title" />
       <div class="flex flex-wrap">
         <div
@@ -31,6 +31,10 @@ const route = useRoute();
           See more
         </router-link>
       </div>
+    </div>
+    <div class="container text-center py-16">
+      <b class="text-5xl text-gray-700">404</b>
+      <p class="text-xl mt-2 text-gray-500">Kitoblar topilmadi</p>
     </div>
   </section>
 </template>

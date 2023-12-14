@@ -11,51 +11,6 @@ const categoryStore = useCategoryStore();
 const openSubMenu = ref(false);
 const searchWord = ref("");
 
-const categories = [
-  {
-    title: "Arts & Photography",
-    subCategories: ["subCategory", "subCategory", "subCategory", "subCategory"],
-  },
-  {
-    title: "Biographies",
-    subCategories: [
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-    ],
-  },
-  {
-    title: "Geography",
-    subCategories: ["subCategory", "subCategory", "subCategory"],
-  },
-  {
-    title: "Languages",
-  },
-  {
-    title: "Novels",
-  },
-  {
-    title: "Medicines",
-    subCategories: [
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-      "subCategory",
-    ],
-  },
-  {
-    title: "Algorithms & IT",
-  },
-];
-
 const scrolling = ref(false);
 function scrollHeader() {
   if (window.scrollY === 0) {

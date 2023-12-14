@@ -1,18 +1,43 @@
 <script setup>
-import { useRoute } from "vue-router";
+import { onMounted, ref } from "vue";
+import { useCategoryStore } from "../../stores/category";
+import { useRoute, useRouter } from "vue-router";
 
+const categoryStore = useCategoryStore();
+const router = useRouter();
 const route = useRoute();
 const props = defineProps({
   searchFunction: Function,
+  getData: Function,
 });
 
-const search = (e) => {
-  props.searchFunction({
-    page: 1,
-    limit: 18,
-    search: e.target.value,
-  });
+const searchString = ref(null);
+const categoryId = ref(null);
+const search = () => {
+  if (route.path === "/authors") {
+    props.searchFunction({
+      page: 1,
+      limit: 18,
+      search: searchString.value,
+    });
+  } else {
+    router.push({ name: "books", query: { search: searchString.value } });
+  }
 };
+
+const filterData = (e) => {
+  searchString.value = "";
+  categoryId.value = e.target.value;
+  if (categoryId.value !== "all") {
+    router.push({ name: "books", query: { category: categoryId.value } });
+  } else {
+    router.push({ name: "books" });
+  }
+};
+
+onMounted(() => {
+  categoryStore.getCategories({ page: 1, limit: 10 });
+});
 </script>
 
 <template>
@@ -27,9 +52,10 @@ const search = (e) => {
         type="text"
         placeholder="search"
         class="py-2 px-4 rounded-l outline-none border border-gray-300 w-[85%]"
-        @input="search"
+        v-model="searchString"
       />
       <button
+        @click="search"
         class="py-2 rounded-r outline-none w-[15%] bg-gray-400 relative border-none"
       >
         <i
@@ -42,10 +68,17 @@ const search = (e) => {
     <select
       v-if="route.path === '/books'"
       class="w-full sm:w-[30%] md:w-auto py-2 px-4 rounded outline-none border border-gray-300"
+      @input="filterData"
     >
-      <option value="1">Barcha kitoblar</option>
-      <option value="2">Saralangan kitoblar</option>
-      <option value="3">Eng ko'p o'qilgan kitoblar</option>
+      <option value="" selected hidden>Kategoriyani tanlang</option>
+      <option value="all">Barcha kitoblar</option>
+      <option
+        v-for="(item, index) in categoryStore.categories.data"
+        :value="item?.id"
+        :key="index + '-category-option'"
+      >
+        {{ item?.category_name }}
+      </option>
     </select>
   </section>
 </template>

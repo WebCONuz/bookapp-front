@@ -19,7 +19,7 @@ const props = defineProps({
         :class="
           index + 1 === props.data?.length ? '' : 'border-b border-gray-200'
         "
-        :to="'/books?category=' + item?.category_name"
+        :to="'/books?category=' + item?.id"
       >
         <span>{{ item.category_name }}</span>
         <i
@@ -36,7 +36,7 @@ const props = defineProps({
           v-for="(sub, i) in item?.subcategories"
           :key="i + '-sub-child-item'"
           class="px-3 text-black hover:bg-gray-100 hover:text-[#701BF8] duration-150 block"
-          :to="'/books?subcategory=' + sub?.subcategory_name"
+          :to="'/books?subcategory=' + sub?.id"
         >
           <div
             class="p-3"

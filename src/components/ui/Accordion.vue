@@ -18,7 +18,7 @@ const openAccordion = () => {
       class="px-4 py-1 mb-1 w-full flex items-center justify-between cursor-pointer duration-200"
       :class="open ? 'text-[#701BF8] bg-gray-100' : ''"
       @click="openAccordion"
-      :to="'/books?category=' + props.data?.category_name"
+      :to="'/books?category=' + props.data?.id"
     >
       <div class="flex items-center">
         {{ props.data?.category_name }}
@@ -36,7 +36,7 @@ const openAccordion = () => {
       <router-link
         class="inline-block py-1 pl-2 duration-200"
         v-for="(item, i) in props.data?.subCategories"
-        :to="'/books?subcategory=' + item?.subcategory_name"
+        :to="'/books?subcategory=' + item?.id"
         :key="i + '-item-sum-ttt'"
       >
         <i class="bx bx-radio-circle text-[10px] mr-2"></i>

@@ -78,6 +78,7 @@ export const useBookStore = defineStore("book", {
     async getBooks(params) {
       this.books.loading = true;
       try {
+        // console.log(params);
         // create url
         const {
           page = 1,
@@ -100,7 +101,7 @@ export const useBookStore = defineStore("book", {
         if (authorId) {
           getUrl = getUrl + "&author_id=" + authorId;
         }
-
+        console.log(getUrl);
         // get
         const res = await HttpModel.get(getUrl);
         this.books.data = res.data.books;

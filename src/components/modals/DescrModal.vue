@@ -21,8 +21,8 @@ defineExpose({ openModal });
 // send data to back
 const submitData = async () => {
   await bookStore.postComment({
-    book_id: props.bookId,
-    user_id: props.userId,
+    book_id: +props.bookId,
+    user_id: +props.userId,
     text: text.value,
   });
   props.getAll();

@@ -19,6 +19,7 @@ export const useAuthStore = defineStore("auth", {
     // LOGIN
     async login(params) {
       try {
+        console.log(params);
         const response = await HttpModel.post({
           url: "/client/login",
           payload: params,
@@ -34,7 +35,9 @@ export const useAuthStore = defineStore("auth", {
         }
       } catch (error) {
         console.log(error);
-        toast.error(error?.response?.data?.data?.message);
+        toast.error(
+          error?.response?.data?.data?.message || "Login qilishda xatolik"
+        );
       }
     },
 

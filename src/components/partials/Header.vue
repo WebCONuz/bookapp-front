@@ -33,10 +33,22 @@ function goProfile() {
   }
 }
 
+const searchText = ref(null);
+const searchData = () => {
+  if (searchText.value) {
+    router.push({ name: "books", query: { search: searchText.value } });
+  }
+};
+
 onMounted(() => {
   categoryStore.getCategories({ page: 1, limit: 10 });
   window.addEventListener("scroll", () => {
     scrollHeader();
+  });
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      searchData();
+    }
   });
 });
 </script>
@@ -112,8 +124,10 @@ onMounted(() => {
               type="text"
               placeholder="search"
               class="py-2 pl-4 pr-9 rounded outline-none border border-gray-300 w-[250px] xl:w-[350px]"
+              v-model="searchText"
             />
             <i
+              @click="searchData"
               class="bx bx-search text-2xl text-gray-400 absolute right-2 top-1/2 -translate-y-1/2"
             ></i>
           </li>

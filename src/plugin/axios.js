@@ -7,7 +7,9 @@ axios.defaults.baseURL = "https://bookapp.gofurov.com.uz/v1";
 axios.interceptors.request.use(
   (req) => {
     const token = localStorage.getItem("book_app_token");
-    req.headers["Authorization"] = `${token}`;
+    if (token) {
+      req.headers["Authorization"] = `${token}`;
+    }
     req.headers["Accsess-Control-Allow-Origin"] = "*";
     return req;
   },

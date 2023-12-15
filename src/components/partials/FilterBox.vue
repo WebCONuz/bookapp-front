@@ -37,6 +37,11 @@ const filterData = (e) => {
 
 onMounted(() => {
   categoryStore.getCategories({ page: 1, limit: 10 });
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      search();
+    }
+  });
 });
 </script>
 

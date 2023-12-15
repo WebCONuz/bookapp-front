@@ -1,6 +1,7 @@
 <script setup>
 import BreadCrumb from "@/components/ui/BreadCrumb.vue";
 import MainSlider from "@/components/partials/MainSlider.vue";
+import Avatar from "@/assets/images/ui/avatar.png";
 const datas = [
   { name: "Home", link: "/" },
   { name: "Profile", link: "/profile" },
@@ -18,7 +19,7 @@ const datas = [
     <section class="pt-5 sm:pt-10 pb-10 sm:pb-20">
       <div class="container flex flex-col items-center mb-5 sm:mb-10">
         <img
-          src="../assets/images/ui/profile2.jpg"
+          :src="Avatar"
           alt="profile-image"
           class="w-[150px] h-[150px] rounded-full mb-4"
         />

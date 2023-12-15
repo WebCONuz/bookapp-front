@@ -216,11 +216,11 @@ onMounted(async () => {
           <div class="flex">
             <button
               @click="addDataToLike"
-              class="bg-transparent mr-2 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 duration-200"
+              class="mr-2 font-semibold py-2 sm:py-4 px-4 sm:px-8 text-sm sm:text-base rounded-md outline-none border border-gray-700 duration-200"
               :class="
                 addedLike
                   ? 'bg-gray-700 text-white opacity-50'
-                  : 'text-gray-700 sm:hover:bg-gray-700 sm:hover:text-white'
+                  : 'bg-transparent text-gray-700 sm:hover:bg-gray-700 sm:hover:text-white'
               "
             >
               {{ addedLike ? "Javondan o'chirish" : "Javonga qo'shish" }}

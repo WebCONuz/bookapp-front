@@ -1,4 +1,5 @@
 <script setup>
+import Avatar from "@/assets/images/ui/avatar.png";
 const props = defineProps({
   data: Object,
 });
@@ -10,7 +11,7 @@ const props = defineProps({
   >
     <div class="flex items-center mb-4">
       <img
-        :src="props.data?.user?.avatar_url"
+        :src="props.data?.user?.avatar_url || Avatar"
         alt="avatar"
         class="w-10 lg:w-12 h-10 lg:h-12 object-cover mr-3 lg:mr-4 shadow-lg rounded-full"
       />
@@ -21,7 +22,11 @@ const props = defineProps({
         <p class="text-gray-500 italic text-sm">Kitobxon</p>
       </div>
     </div>
-    <p class="text-sm lg:text-base">{{ props.data?.text }}</p>
+    <p
+      class="text-sm lg:text-base h-20 sm:h-[100px] md:h-[120px] overflow-hidden"
+    >
+      {{ props.data?.text }}
+    </p>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
 import BreadCrumb from "@/components/ui/BreadCrumb.vue";
 import MainSlider from "@/components/partials/MainSlider.vue";
 import Avatar from "@/assets/images/ui/avatar.png";
-import EditProfile from "../components/modals/EditProfile.vue";
+import EditProfile from "@/components/modals/EditProfile.vue";
 import { ref, onMounted } from "vue";
 import { useAuthStore } from "@/stores/auth";
 
@@ -32,23 +32,28 @@ onMounted(() => {
     </section>
 
     <!-- profile info -->
-    <section class="py-5 sm:py-10">
-      <div class="container flex items-center justify-center">
+    <section class="pt-4 pb-8 sm:py-10">
+      <div class="container flex items-start sm:items-center justify-center">
         <img
           :src="userStore.client.data?.avatar_url || Avatar"
           alt="profile-image"
-          class="w-[150px] h-[150px] rounded-full mb-4 shadow-lg object-cover"
+          class="w-[60px] sm:w-[150px] h-[60px] sm:h-[150px] rounded-full mb-4 shadow-lg object-cover"
         />
-        <div class="ml-8">
-          <h1 class="text-xl text-gray-600 font-semibold uppercase mb-2">
+        <div class="ml-4 sm:ml-8">
+          <h1
+            class="text-lg sm:text-xl text-gray-600 font-semibold uppercase sm:mb-2"
+          >
             {{ userStore.client.data?.full_name }}
           </h1>
-          <p v-if="userStore.client.data?.login" class="mb-4">
+          <p
+            v-if="userStore.client.data?.login"
+            class="mb-4 text-sm sm:taxt-base"
+          >
             {{ userStore.client.data?.login }}
           </p>
           <button
             @click="openEditModal.openModal(userStore.client.data)"
-            class="py-2 px-6 bg-blue-600 text-white rounded-md"
+            class="py-2 px-6 bg-blue-600 text-white rounded-md text-sm sm:text-base"
           >
             Edit Data
           </button>

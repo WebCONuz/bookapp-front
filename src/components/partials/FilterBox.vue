@@ -16,8 +16,6 @@ const categoryId = ref(null);
 const search = () => {
   if (route.path === "/authors") {
     props.searchFunction({
-      page: 1,
-      limit: 18,
       search: searchString.value,
     });
   } else {

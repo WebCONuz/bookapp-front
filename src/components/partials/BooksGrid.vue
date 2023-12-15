@@ -11,7 +11,10 @@ const route = useRoute();
 </script>
 
 <template>
-  <section class="books-grid pb-5 md:pb-10">
+  <section
+    class="books-grid mb-3 sm:pb-5"
+    :class="props.books?.length > 0 && route.path !== '/' ? '' : 'md:pb-10'"
+  >
     <div class="container" v-if="props.books?.length > 0">
       <Title :text="props.title" />
       <div class="flex flex-wrap">

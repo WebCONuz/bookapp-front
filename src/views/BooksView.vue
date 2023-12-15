@@ -5,6 +5,7 @@ import FilterBox from "@/components/partials/FilterBox.vue";
 import { useBookStore } from "../stores/book";
 import { useRoute } from "vue-router";
 import { onMounted, watch, onUpdated, ref, reactive } from "vue";
+import Paginate from "vuejs-paginate-next";
 
 const bookStore = useBookStore();
 const route = useRoute();
@@ -14,11 +15,15 @@ const queryString = reactive({
   search: null,
 });
 const linkUrl = ref(null);
+const paginationCount = ref(0);
+const limit = 12;
+const currentPage = ref(1);
 const getAllData = async (params) => {
   await bookStore.getBooks(params);
   queryString.category = null;
   queryString.subcategory = null;
   queryString.search = null;
+  paginationCount.value = bookStore.books.count;
 };
 
 const datas = [
@@ -34,7 +39,7 @@ const getByQuery = () => {
   } else if (route.query.search) {
     queryString.search = route.query.search;
   }
-  getAllData({ page: 1, limit: 18, ...queryString });
+  getAllData({ page: currentPage.value, limit: limit, ...queryString });
 };
 
 onUpdated(() => {
@@ -61,6 +66,21 @@ onMounted(() => {
       :searchFunction="getAllData"
     />
     <BooksGrid title="Kitoblar" :books="bookStore.books.data" />
+    <div class="container pb-10 sm:pb-16" v-if="route.path !== '/'">
+      <Paginate
+        v-if="paginationCount > 1"
+        :page-count="paginationCount"
+        :page-range="3"
+        :margin-pages="2"
+        :click-handler="getByQuery"
+        :prev-text="'<'"
+        :next-text="'>'"
+        :container-class="'pagination'"
+        :page-class="'page-item'"
+        v-model="currentPage"
+      >
+      </Paginate>
+    </div>
   </div>
 </template>
 

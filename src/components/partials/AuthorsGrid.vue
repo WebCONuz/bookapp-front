@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <section class="books-grid pb-5 md:pb-10">
+  <section class="books-grid pb-5 md:pb-5">
     <div class="container">
       <Title :text="props.title" />
       <div class="flex flex-wrap">

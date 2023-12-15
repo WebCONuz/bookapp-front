@@ -58,7 +58,7 @@ export const useAuthorStore = defineStore("author", {
         }
         const res = await HttpModel.get(getUrl);
         this.authors.data = res.data.authors;
-        this.authors.count = res.data.page_count;
+        this.authors.count = res.data._meta.page_count;
       } catch (error) {
         console.log(error);
       } finally {

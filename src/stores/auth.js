@@ -75,5 +75,42 @@ export const useAuthStore = defineStore("auth", {
         this.client.loading = false;
       }
     },
+
+    // EDIT PROFILE
+    async editProfile(image, data) {
+      try {
+        let imgUrl;
+        if (typeof image == "object") {
+          const formData = new FormData();
+          formData.append("file", image);
+          const res1 = await HttpModel.post({
+            url: "/store/upload",
+            payload: formData,
+            file: true,
+          });
+          imgUrl = res1.data.file_url;
+        } else {
+          imgUrl = image;
+        }
+
+        const res2 = await HttpModel.put({
+          url: "/client/update",
+          payload: {
+            ...data,
+            avatar_url: imgUrl,
+          },
+          file: false,
+        });
+
+        if (res2.status === "OK") {
+          toast.success("Profil Ma'lumotlari yangilandi");
+        } else {
+          toast.error("Ma'lumotlarni yuklashda xatolik!");
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Ma'lumotlarni yuklashda xatolik!");
+      }
+    },
   },
 });

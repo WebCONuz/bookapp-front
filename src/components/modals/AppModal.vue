@@ -11,9 +11,8 @@ const props = defineProps({
 
 <template>
   <div
-    class="app-modal w-full px-3 sm:px-0"
+    class="app-modal px-3 sm:px-0 w-full sm:w-[500px] lg:w-[600px]"
     :class="{ 'app-show-modal': modelValue }"
-    :style="'max-width:' + props.width"
   >
     <AppTransition>
       <div v-if="modelValue" class="app-modal__body rounded-2xl">

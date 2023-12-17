@@ -40,7 +40,7 @@ onMounted(() => {
     <!-- sections -->
     <FilterBox class="pt-3 pb-8" :searchFunction="getAllData" />
     <AuthorsGrid
-      v-if="authorStore.authors.data?.legnth > 0"
+      v-if="authorStore.authors.data?.length > 0"
       title="Barcha Mualliflar"
       :authors="authorStore.authors.data"
       :getAll="getAllData"

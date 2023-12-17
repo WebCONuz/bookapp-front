@@ -2,6 +2,7 @@
 import BookCard from "../cards/BookCard.vue";
 import Title from "../ui/Title.vue";
 import { useRoute } from "vue-router";
+import NotFound from "../ui/NotFound.vue";
 
 const props = defineProps({
   title: String,
@@ -36,8 +37,7 @@ const route = useRoute();
       </div>
     </div>
     <div class="container text-center py-16" v-else>
-      <b class="text-5xl text-gray-700">404</b>
-      <p class="text-xl mt-2 text-gray-500">Kitoblar topilmadi</p>
+      <NotFound title="404" text="Kitoblar topilmadi" />
     </div>
   </section>
 </template>

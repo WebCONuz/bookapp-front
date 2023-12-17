@@ -52,6 +52,17 @@ class httpModel {
         .catch((err) => reject(err));
     });
   }
+
+  // DELETE
+  deleteData(parameter) {
+    return new Promise((resolve, reject) => {
+      const { url, payload } = parameter;
+      axios
+        .delete(url, payload)
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err));
+    });
+  }
 }
 
 const HttpModel = new httpModel();

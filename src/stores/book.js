@@ -148,5 +148,42 @@ export const useBookStore = defineStore("book", {
         this.book.loading = false;
       }
     },
+
+    // LIKE
+    async favoriteBook(data) {
+      try {
+        const res = await HttpModel.post({
+          url: "/book/like",
+          payload: data,
+          file: false,
+        });
+
+        if (res.status === "CREATED") {
+          toast.success("Bu kitob javonga qo'shildi");
+        } else {
+          toast.error("Javonga qo'shishda xatolik!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // DISLIKE
+    async dislikeBook(data) {
+      try {
+        const res = await HttpModel.deleteData({
+          url: "/book/like",
+          payload: data,
+        });
+
+        if (res.status === "OK") {
+          toast.success("Bu kitob javondan o'chirildi");
+        } else {
+          toast.error("Javondan o'chirishda xatolik!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });

@@ -75,9 +75,47 @@ function addDataToLike() {
   );
 }
 
+// const isCheck = (arr, id) => {
+//   const data = arr?.filter((item) => item?.id === id);
+//   if (data) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
+
+// like or dislike
+// const addedLike = ref(true);
+// let likes = localStorage.getItem("likes");
+// const isFavorite = async () => {
+//   if (token && user) {
+//     if (addedLike.value) {
+//       await bookStore.dislikeBook({
+//         book_id: +route.params.id,
+//         user_id: +user,
+//       });
+//     } else {
+//       if (likes) {
+//         likes.push(bookStore.book.data);
+//       } else {
+//         likes = [];
+//         likes.push(bookStore.book.data);
+//       }
+//       localStorage.setItem("likes", likes);
+//       await bookStore.favoriteBook({
+//         book_id: +route.params.id,
+//         user_id: +user,
+//       });
+//     }
+//   } else {
+//     router.push({ name: "auth" });
+//   }
+// };
+
 onMounted(async () => {
   await bookStore.getOneBook(route.params.id);
   addedLike.value = checkFromLocaleStorage("like", bookStore.book.data);
+  // addedLike.value = isCheck(likes, +route.params.id);
 });
 </script>
 

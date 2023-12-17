@@ -15,21 +15,16 @@ const { getLike } = storeToRefs(likeStore);
 const openSubMenu = ref(false);
 const searchWord = ref("");
 
+const leftOpen = () => {
+  openSubMenu.value = !openSubMenu.value;
+};
+
 const scrolling = ref(false);
 function scrollHeader() {
   if (window.scrollY === 0) {
     scrolling.value = false;
   } else {
     scrolling.value = true;
-  }
-}
-
-const token = localStorage.getItem("book_app_token");
-function goProfile() {
-  if (token) {
-    router.push({ name: "user-profile" });
-  } else {
-    router.push({ name: "auth" });
   }
 }
 
@@ -41,13 +36,14 @@ const searchData = () => {
 };
 
 onMounted(() => {
-  categoryStore.getCategories({ page: 1, limit: 10 });
+  categoryStore.getCategories({ page: 1, limit: 20 });
   window.addEventListener("scroll", () => {
     scrollHeader();
   });
   window.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       searchData();
+      leftOpen();
     }
   });
 });
@@ -90,7 +86,7 @@ onMounted(() => {
             <i class="bx bx-user-circle text-2xl text-gray-500"></i>
           </router-link>
           <div
-            @click="openSubMenu = !openSubMenu"
+            @click="leftOpen"
             class="text-gray-500 w-9 h-8 border-2 border-gray-500 flex items-center justify-center rounded"
           >
             <i v-if="!openSubMenu" class="bx bx-menu text-2xl"></i>
@@ -163,6 +159,7 @@ onMounted(() => {
                 v-model="searchWord"
               />
               <i
+                @click="leftOpen"
                 class="bx bx-search text-xl sm:text-2xl text-gray-400 absolute right-2 sm:right-3 top-1/2 -translate-y-1/2"
               ></i>
             </div>
@@ -173,6 +170,7 @@ onMounted(() => {
               <li class="mb-2 pl-4">
                 <router-link
                   to="/books"
+                  @click="leftOpen"
                   class="py-2 hover:text-[#701BF8] duration-200"
                   >Kitoblar</router-link
                 >
@@ -180,6 +178,7 @@ onMounted(() => {
               <li class="mb-2 pl-4">
                 <router-link
                   to="/authors"
+                  @click="leftOpen"
                   class="py-2 hover:text-[#701BF8] duration-200"
                   >Mualliflar</router-link
                 >
@@ -194,6 +193,7 @@ onMounted(() => {
               v-for="(item, index) in categoryStore.categories.data"
               :key="index + '-res-menu-item'"
               :data="item"
+              :openLeft="leftOpen"
             />
           </div>
         </div>
@@ -213,8 +213,11 @@ onMounted(() => {
               </div>
             </router-link>
           </li>
-          <li class="relative" @click="goProfile">
-            <i class="bx bx-user-circle text-2xl text-gray-600"></i>
+          <li class="relative">
+            <router-link
+              to="/profile"
+              class="bx bx-user-circle text-2xl text-gray-600"
+            ></router-link>
           </li>
         </ul>
       </div>

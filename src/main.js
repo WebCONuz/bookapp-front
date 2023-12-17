@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import "nprogress/nprogress.css";
 
 import App from "./App.vue";
 import router from "./router";

@@ -5,6 +5,7 @@ import FilterBox from "@/components/partials/FilterBox.vue";
 import AuthorsGrid from "@/components/partials/AuthorsGrid.vue";
 import { useAuthorStore } from "../stores/author";
 import Paginate from "vuejs-paginate-next";
+import NotFound from "@/components/ui/NotFound.vue";
 
 const authorStore = useAuthorStore();
 const paginationCount = ref(0);
@@ -39,10 +40,12 @@ onMounted(() => {
     <!-- sections -->
     <FilterBox class="pt-3 pb-8" :searchFunction="getAllData" />
     <AuthorsGrid
+      v-if="authorStore.authors.data?.legnth > 0"
       title="Barcha Mualliflar"
       :authors="authorStore.authors.data"
       :getAll="getAllData"
     />
+    <NotFound v-else title="404" text="Mualliflar mavjud emas" />
     <div class="container pb-10 sm:pb-16">
       <Paginate
         v-if="paginationCount > 1"

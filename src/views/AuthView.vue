@@ -1,11 +1,11 @@
 <script setup>
-import AuthForm from "../components/auth/AuthForm.vue";
+import AuthForm from "@/components/auth/AuthForm.vue";
 </script>
 
 <template>
   <div class="home">
     <div class="container py-16">
-      <div class="w-1/2 mx-auto">
+      <div class="md:w-2/3 lg:w-1/2 mx-auto">
         <AuthForm />
       </div>
     </div>

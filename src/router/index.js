@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import NProgress from "nprogress";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +44,11 @@ const router = createRouter({
       name: "user-profile",
       component: () => import("../views/ProfileView.vue"),
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import("../views/NotFound.vue"),
+    },
   ],
 
   scrollBehavior(to, from, savedPosition) {
@@ -54,6 +60,35 @@ const router = createRouter({
       return { top: 0 };
     }
   },
+});
+
+// === NProgress start ===
+router.beforeResolve((to, from, next) => {
+  NProgress.start();
+  next();
+});
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem("book_app_token");
+
+  if (to.name === "favorite" || to.name === "user-profile") {
+    if (!token) {
+      return next({ name: "auth" });
+    }
+  } else {
+    if (to.name === "auth") {
+      if (token) {
+        return next({ name: from.name || "home" });
+      }
+    }
+  }
+
+  return next();
+});
+
+// === NProgress done ===
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;

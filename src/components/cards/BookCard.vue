@@ -48,7 +48,7 @@ onMounted(() => {
 
 <template>
   <div class="card p-2 border border-gray-300 bg-white rounded-md relative">
-    <div
+    <!-- <div
       @click="addDataToLike"
       class="absolute top-3 right-3 sm:right-4 border border-gray-300 bg-white rounded-md w-6 sm:w-7 h-6 sm:h-7 flex items-center justify-center cursor-pointer"
     >
@@ -57,7 +57,7 @@ onMounted(() => {
         class="bx bxs-heart text-lg sm:text-xl text-red-500"
       ></i>
       <i v-else class="bx bx-heart text-lg sm:text-xl text-gray-400"></i>
-    </div>
+    </div> -->
     <router-link :to="'/books/' + props.data?.id" class="block mb-2">
       <img
         :src="props.data?.image"
@@ -88,11 +88,12 @@ onMounted(() => {
           <span class="text-sm sm:text-base">{{ props.data?.like_count }}</span>
         </p>
       </div>
-      <button
+      <router-link
+        :to="'/books/' + props.data?.id"
         class="px-[6px] rounded-[4px] bg-gray-400 text-white outline-none hover:bg-[#701BF8] duration-200"
       >
         <i class="bx bx-book-open text-sm"></i>
-      </button>
+      </router-link>
     </div>
   </div>
 </template>
